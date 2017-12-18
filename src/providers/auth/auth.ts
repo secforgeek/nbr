@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthProvider {
@@ -11,12 +9,12 @@ export class AuthProvider {
 
   constructor(public http: HttpClient) { }
 
-  AuthLogin(username, password): Observable<any>{
-    let htph:HttpHeaders = new HttpHeaders({'Content-Type':'application/json'});
-    let htparam = new HttpParams();
-    htparam.set("username", username).set("password",password);
-    return this.http.post(this.url,htparam, {headers:htph});
-    
+  AuthLogin(username, password){
+    let htph = new HttpHeaders().set('content-type','application/json');
+    let custom = {"username":username, "password":password.toString()};
+    console.log("Headers : ", htph);
+    console.log("Param : ", custom);
+    return this.http.post(this.url, custom, {headers:htph});
   }
 
 }

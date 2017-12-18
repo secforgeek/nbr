@@ -6,7 +6,7 @@ export class AuthProvider {
 
   url = 'http://localhost/api/auth';
   data = null;
-
+  loader = null;
   constructor(public http: HttpClient) { }
 
   AuthLogin(username, password){

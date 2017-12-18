@@ -32,7 +32,7 @@ export class LoginPage{
         break;
 
         default:
-          console.log("Default Error");
+        this.toast.fireToast("Cannot ");
         break;
       }
     }, error => {

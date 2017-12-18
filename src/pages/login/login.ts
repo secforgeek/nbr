@@ -4,24 +4,26 @@ import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage{
   username:string;
   password:string;
+  data = null;
 
   constructor(public navCtrl: NavController, private authprovider: AuthProvider) {
-    this.username = "username@gmail.com";
-    this.password = "hsjahsjahs";
-    authprovider.AuthLogin(this.username, this.password).subscribe((data) => {
-        console.log("Login Auth : ", data);
-    },
-    response => {
-      console.log("Login Error Auth : ", response);
-    }, 
-    () => {
-      console.log("Login Auth Completed");
+
+  }
+
+  login(){
+    this.authprovider.AuthLogin("username@gmail.com","hhjdhjshds").subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log("Error Fo:",error);
+    }, () => {
+      console.log("Completed");
     });
   }
+
 
 }

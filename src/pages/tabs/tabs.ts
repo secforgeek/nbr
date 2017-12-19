@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { NavParams } from 'ionic-angular'
+import { OrdersPage } from '../orders/orders';
+import { SettingsPage } from '../settings/settings';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -10,10 +10,11 @@ import { HomePage } from '../home/home';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  tab2Root = OrdersPage;
+  tab3Root = SettingsPage;
+  mySelectedIndex: number;
 
-  constructor() {
-
+  constructor(navParams: NavParams) {
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
 }

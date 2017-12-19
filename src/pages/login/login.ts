@@ -32,7 +32,7 @@ export class LoginPage{
         break;
 
         case "success":
-          if(this.storage.setToken(this.successData.response.data.token)){
+          if(this.storage.setToken(this.successData.response.data.token)){ 
             this.toast.fireToast(this.successData.response.success);
             this.navCtrl.push(TabsPage);
           }else{
@@ -41,11 +41,11 @@ export class LoginPage{
         break;
 
         default:
-          this.toast.fireToast("Please check your network connection");
+          this.toast.fireToast("Invalid Request");
         break;
       }
     }, error => {
-      console.log("Error Fo:",error);
+      console.log("Please check your network connection");
     }, () => {
       console.log(this.successData);
     });

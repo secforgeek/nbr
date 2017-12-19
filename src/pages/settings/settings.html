@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="settings_options_start">
+      <ion-segment-button value="Profile">
+        Profile
+      </ion-segment-button>
+      <ion-segment-button value="Options">
+        Settings
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>{{ settings_options_start }}</ion-list-header>
+    <ion-item *ngFor="let item of getItems(settings_options_start)">
+        <ng-container *ngIf="item.type == 'options'; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+          {{item.name}}
+        </ng-template>
+    </ion-item>
+  </ion-list>
+  <ng-template #elseTemplate>
+    <button ion-button block color="danger" (click)="logoff()">Logout</button> 
+  </ng-template>
+</ion-content>

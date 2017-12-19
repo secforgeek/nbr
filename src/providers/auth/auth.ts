@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -12,8 +12,6 @@ export class AuthProvider {
   AuthLogin(username, password){
     let htph = new HttpHeaders().set('content-type','application/json');
     let custom = {"username":username, "password":password.toString()};
-    console.log("Headers : ", htph);
-    console.log("Param : ", custom);
     return this.http.post(this.url, custom, {headers:htph});
   }
 

@@ -9,27 +9,47 @@ export class StorageProvider {
   constructor(public storage: Storage) { console.log("Storage Class");  }
 
   insert(key, value){
-    return this.storage.set(key, value);
+    this.storage.set(key, value);
+    return true;
   }
 
   remove(key){
-    return this.storage.remove(key);
+    this.storage.remove(key);
   }
 
-  setToken(token) {
-    if(this.insert(this.DB_KEY_TOKEN, token)){
-      this.insert(this.DB_KEY_TOKEN_ISSET, true);
-      return true;
+  setToken(token){
+    let val = this.insert(this.DB_KEY_TOKEN, token);
+    console.log("val",val);
+    if(val){
+      if(this.insert(this.DB_KEY_TOKEN_ISSET, true)){
+        console.log("Sucess ALL");
+        return true;
+      }else{
+        console.log("Step 2 Failed");
+        return false;
+      }
     }else{
       this.insert(this.DB_KEY_TOKEN_ISSET, false);
+      console.log("Failed");
       return false;
     }
   }
 
-  issetToken() : Promise<boolean>{
-    return this.storage.get(this.DB_KEY_TOKEN_ISSET).then((value) => {
-      return value === true;
+  issetToken(){
+    this.storage.get(this.DB_KEY_TOKEN_ISSET).then(value => {
+      if(value == true){
+        console.log("Isset Token", true);
+        return true;
+      }else{
+        console.log("Isset Token", false);
+        return false;
+      }
     });
+  }
+
+  resetAll(){
+    this.storage.clear();
+    console.log("clear all data");
   }
 
 

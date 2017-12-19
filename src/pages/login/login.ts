@@ -3,6 +3,9 @@ import { NavController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertsProvider } from '../../providers/alerts/alerts';
 import sha256 from 'crypto-js/sha256';
+import { StorageProvider } from '../../providers/storage/storage';
+import { TabsPage } from '../tabs/tabs';
+
 
 @Component({
   selector: 'page-login',
@@ -13,8 +16,9 @@ export class LoginPage{
   loginFormdata = null;
   successData = null;
 
-  constructor(public navCtrl: NavController, private authprovider: AuthProvider, private toast: AlertsProvider) {
 
+  constructor(public navCtrl: NavController, private authprovider: AuthProvider, private toast: AlertsProvider, private storage: StorageProvider) {
+    console.log("login ts");
   }
 
   login(value){
@@ -28,11 +32,16 @@ export class LoginPage{
         break;
 
         case "success":
-          this.toast.fireToast(this.successData.response.success);
+          if(this.storage.setToken(this.successData.response.data.token)){
+            this.toast.fireToast(this.successData.response.success);
+            this.navCtrl.push(TabsPage);
+          }else{
+            this.toast.fireToast("Technical Problem");
+          }
         break;
 
         default:
-        this.toast.fireToast("Cannot ");
+          this.toast.fireToast("Please check your network connection");
         break;
       }
     }, error => {

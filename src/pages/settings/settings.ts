@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { StorageProvider } from '../../providers/storage/storage';
+import { App } from 'ionic-angular';
+import { LoginPage } from '../login/login';
+
 
 @Component({
   selector: 'page-settings',
@@ -7,7 +10,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 })
 export class SettingsPage {
 
-  constructor(public storage: StorageProvider){
+  constructor(public storage: StorageProvider, private nav: App){
 
   }
 
@@ -46,5 +49,6 @@ export class SettingsPage {
 
   logoff(){
     this.storage.resetAll();
+    this.nav.getRootNav().push(LoginPage);
   }
 }

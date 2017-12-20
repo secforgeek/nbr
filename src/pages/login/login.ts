@@ -45,7 +45,7 @@ export class LoginPage{
         break;
       }
     }, error => {
-      console.log("Please check your network connection");
+      this.toast.fireToast("Please check your network connection");
     }, () => {
       console.log(this.successData);
     });

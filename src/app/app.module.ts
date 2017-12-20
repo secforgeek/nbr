@@ -16,7 +16,7 @@ import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { AlertsProvider } from '../providers/alerts/alerts';
 import { StorageProvider } from '../providers/storage/storage';
-
+import { Toast } from '@ionic-native/toast';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import { StorageProvider } from '../providers/storage/storage';
     LoginPage
   ],
   providers: [
+    Toast,
     StatusBar,
     SplashScreen,
     StorageProvider,

@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { Toast } from '@ionic-native/toast';
+import { Platform, ToastController } from 'ionic-angular';
 
 @Injectable()
 export class AlertsProvider {
 
-  constructor(private toast: ToastController) {
+  constructor(public toast: Toast, public platform: Platform, private browsertoast: ToastController) {
     
   }
 
   fireToast(msg){
-    let toe = this.toast.create({
-      message: msg,
-      duration:3000
-    });
-    toe.present();
+    if (this.platform.is('cordova')) {
+      this.toast.showShortBottom(msg).subscribe(
+        toasta => {
+          console.log(toasta);
+        }
+      );
+    }else{
+      let toe = this.browsertoast.create({
+        message: msg,
+        duration:3000
+      });
+      toe.present();    
+    }
   }
 
 }

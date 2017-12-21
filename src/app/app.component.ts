@@ -15,7 +15,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private storage: Storage) {
     console.clear();
     console.log("app component ts");
-    storage.get('tokenisset').then(data => {
+    this.storage.get('tokenisset').then(data => {
       if(data === true){
         this.rootPage = TabsPage;
       }else{

@@ -10,35 +10,62 @@ import { LoginPage } from '../login/login';
 })
 export class SettingsPage {
 
-  constructor(public storage: StorageProvider, private nav: App){
-
-  }
-
-  settings_options_start = 'Options';
-
+  constructor(public storage: StorageProvider, private nav: App){}
+  
+  settings_options_start = 'Profile';
   settings_options: any = {
     'Profile': [
       {
         type: 'options',
-        name: 'Name',
-        price: 'Gajendra'
+        key: 'Name',
+        value: 'Gajendra'
       },
       {
         type: 'options',
-        name: 'Email',
-        price: 'username@gmail.com'
+        key: 'Email',
+        value: 'username@gmail.com'
+      },
+      {
+        type: 'options',
+        key: 'Phone',
+        value: '123456789'
+      },
+      {
+        type: 'options',
+        key: 'Address 1',
+        value: '24 Eastwood Grange'       
+      },
+      {
+        type: 'options',
+        key: 'Address 2',
+        value: 'Northumberland'       
+      },
+      {
+        type: 'options',
+        key: 'City',
+        value: 'Hexham'       
+      },
+      {
+        type: 'options',
+        key: 'Postcode',
+        value: 'NE46 1UE'       
+      },
+      {
+        type: 'options',
+        key: 'Country',
+        value: 'India'       
       }
     ],
     'Options': [
       {
         type: 'options',
-        name: 'Option 1',
-        price: 'OPEN'
+        key: 'Option 1',
+        value: 'OPEN'
       },
       {
-        type: 'button',
-        name: 'Logout',
-        price: 'GET'
+        type: 'options',
+        key: 'NEw',
+        value: 'GET'
       }
     ]
   };

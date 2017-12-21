@@ -1,26 +1,51 @@
 <ion-header>
-  <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="settings_options_start" color="danger">
-      <ion-segment-button value="Profile">
-        Profile
-      </ion-segment-button>
-      <ion-segment-button value="Options">
-        Settings
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="settings_options_start" color="custom">
+          <ion-segment-button value="Profile">
+            Profile
+          </ion-segment-button>
+          <ion-segment-button value="Options">
+            Settings
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of getItems(settings_options_start)">
-        <ng-container *ngIf="item.type == 'options'; then thenTemplate; else elseTemplate"></ng-container>
-        <ng-template #thenTemplate>
-          {{item.name}}
-        </ng-template>
-    </ion-item>
-  </ion-list>
-  <ng-template #elseTemplate>
-    <button ion-button block color="danger" (click)="logoff()">Logout</button> 
-  </ng-template>
+<ion-content> 
+    <ng-container *ngIf="settings_options_start == 'Profile'; else elseProTemplate">
+      <div class="logo">
+          <img src="../assets/imgs/pro_logo.png">
+      </div>
+      <ion-list>
+        <ion-item *ngFor="let item of getItems(settings_options_start)">
+            <ion-label class="key">{{item.key}}</ion-label>
+            <ion-label class="value">{{item.value}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container> 
+    <ng-template #elseProTemplate>
+      <ion-list>
+        <ion-item *ngFor="let item of getItems(settings_options_start)">
+          <ion-label class="key">{{item.key}}</ion-label>
+          <ion-label class="key">{{item.value}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <button ion-button block color="custom" (click)="logoff()">Logout</button>
+    </ng-template>
 </ion-content>
+
+<!--
+
+        <ion-list>
+          <ion-item *ngFor="let item of getItems(settings_options_start)">
+              <ng-container *ngIf="item.type == 'options'; then thenTemplate; else elseTemplate"></ng-container>
+              <ng-template #thenTemplate>
+                {{item.name}}
+              </ng-template>
+          </ion-item>
+        </ion-list>
+        <ng-template #elseTemplate>
+          <button ion-button block color="danger" (click)="logoff()">Logout</button> 
+        </ng-template> 
+
+      -->

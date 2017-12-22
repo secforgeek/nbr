@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
+import { ListshopsPage } from '../listshops/listshops';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,11 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public app: App) {
 
   }
 
+  search(){
+    this.app.getRootNav().push(ListshopsPage);
+  }
 }

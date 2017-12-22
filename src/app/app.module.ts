@@ -17,6 +17,8 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AlertsProvider } from '../providers/alerts/alerts';
 import { StorageProvider } from '../providers/storage/storage';
 import { Toast } from '@ionic-native/toast';
+import { ListshopsPage } from '../pages/listshops/listshops';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { Toast } from '@ionic-native/toast';
     SettingsPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    ListshopsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { Toast } from '@ionic-native/toast';
     SettingsPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    ListshopsPage
   ],
   providers: [
     Toast,

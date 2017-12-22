@@ -18,49 +18,71 @@
 </ion-header>
 <ion-content>
     <ion-card>
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col class="div1">
-                       <div class="div1_img">
-                            <img src="../assets/imgs/pro_logo.png">
-                       </div>
-                       <div class="div1_distance">
-                            <p><ion-icon name="pin"></ion-icon>10.30KM</p>
-                       </div>
-                    </ion-col>
-                    <ion-col col-9 class="div2">
-                        <div class="div2_title">
-                            <p><b>Adils Takeaway</b></p>
-                        </div>
-                        <div class="div2_category">
-                            <b>Indian, Chinese, American</b>
-                        </div>
-                        <div class="div2_delivery_info">
-                            <span text-center>Delivery</span>
-                            <span text-center>Min Order</span>
-                            <span text-center>Distance</span>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-            <ion-card-content>
+        <ion-card-content (click)="show()">
                 <ion-grid>
                     <ion-row>
-                        <ion-col>
-                            1 of 3
+                        <ion-col class="div1">
+                            <div class="div1_img">
+                                <img src="../assets/imgs/pro_logo.png">
+                            </div>
                         </ion-col>
-                        <ion-col col-6>
-                            2 of 3 (wider)
-                        </ion-col>
-                        <ion-col>
-                            3 of 3
+                        <ion-col col-9 class="div2">
+                            <div class="div2_title">
+                                <ion-badge color="badge">ABS Takeaway</ion-badge>
+                            </div>
+                            <div class="div2_category">
+                                <span>Indian, Pizza</span>
+                            </div>
+                            <div class="div2_category_options">
+                                <span>Delivery</span>
+                            </div>
+                            <div class="div2_delivery_info">
+                                <span text-center class="div2_delivery_border">Delivery Fee</span>
+                                <span text-center>Min Order</span>
+                                <span text-center>Distance</span>
+                            </div>
+                            <div class="div2_delivery_info">
+                                <span text-center class="div2_delivery_border">10.65</span>
+                                <span text-center>50</span>
+                                <span text-center>1.25 KM</span>
+                            </div>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-card-content>
+    </ion-card>
+    <ion-card>
+            <ion-card-content (click)="show()">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col class="div1">
+                                <div class="div1_img">
+                                    <img src="../assets/imgs/logo.png">
+                                </div>
+                            </ion-col>
+                            <ion-col col-9 class="div2">
+                                <div class="div2_title">
+                                    <ion-badge color="badge">ABS Takeaway</ion-badge>
+                                </div>
+                                <div class="div2_category">
+                                    <span>Indian, Pizza</span>
+                                </div>
+                                <div class="div2_category_options">
+                                    <span>Delivery</span>
+                                </div>
+                                <div class="div2_delivery_info">
+                                    <span text-center class="div2_delivery_border">Delivery Fee</span>
+                                    <span text-center>Min Order</span>
+                                    <span text-center>Distance</span>
+                                </div>
+                                <div class="div2_delivery_info">
+                                    <span text-center class="div2_delivery_border">10.65</span>
+                                    <span text-center>50</span>
+                                    <span text-center><ion-icon name="pin"></ion-icon>1.25 KM</span>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card-content>
         </ion-card>
 </ion-content>

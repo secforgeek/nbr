@@ -15,4 +15,8 @@ export class HomePage {
   search(){
     this.app.getRootNav().push(ListshopsPage);
   }
+
+  show(){
+    console.log('Running');
+  }
 }

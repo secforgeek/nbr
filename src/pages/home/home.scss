@@ -40,21 +40,27 @@ page-home {
             }
 
             .div2_title{
-                height:30%;
+                height:30%!important;
                 color:#7b8189;
+                margin-bottom: 2%!important;
             }
 
             .div2_category{
-                height:20%;
+                height:30%!important;
                 font-size: 12px;
             }
 
             .div2_delivery_info{
+                width:80%;
                 height:20%;
                 font-size: 12px;
                 span{
                     width:50%;
-                    color:gray;
+                    color:rgb(59, 29, 29);
+                    border-right:solid 1px#d9dce0;
+                }
+                .div_delivery_info_border{
+                    border-left:solid 1px#d9dce0;
                 }
             }
 

@@ -9,13 +9,47 @@ page-home {
         padding:0px!important;
         width:100%!important;
     }
+
     ion-card{
         margin-top:10px!important;
-        height:20%!important;   
+        height:35%!important;   
+        max-height: 35%!important;
     }
 
+    .div{
+        width:100%!important;
+        height:100%!important;
+        img{
+            max-width: 20%;
+            max-height: 100%;
+            margin:0 auto;
+        }
 
-    //test
+        .div1{
+            height:40%!important;
+            background:orange;
+        }
+    
+        .div2{
+            height:20%!important;
+            background:green;
+        }
+    
+        .div3{
+            height:20%!important;
+            background:yellow;
+        }
+    
+        .div4{
+            height:20%!important;
+            background:maroon;
+        }
+    }
+
+}
+
+
+    /**
     ion-grid{
         .div1{
             .div1_img{
@@ -40,27 +74,22 @@ page-home {
             }
 
             .div2_title{
-                height:30%!important;
+                height:30%;
                 color:#7b8189;
-                margin-bottom: 2%!important;
             }
 
             .div2_category{
-                height:30%!important;
+                width:100%!important;
+                height:20%;
                 font-size: 12px;
             }
 
             .div2_delivery_info{
-                width:80%;
                 height:20%;
                 font-size: 12px;
                 span{
                     width:50%;
-                    color:rgb(59, 29, 29);
-                    border-right:solid 1px#d9dce0;
-                }
-                .div_delivery_info_border{
-                    border-left:solid 1px#d9dce0;
+                    color:gray;
                 }
             }
 
@@ -73,5 +102,4 @@ page-home {
         }
 
     }
-
-}
+    **/

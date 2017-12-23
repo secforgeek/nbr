@@ -8,6 +8,8 @@ import { ListshopsPage } from '../listshops/listshops';
 })
 export class HomePage {
 
+  toggle = true;
+
   constructor(public navCtrl: NavController, public app: App) {
 
   }
@@ -16,7 +18,4 @@ export class HomePage {
     this.app.getRootNav().push(ListshopsPage);
   }
 
-  show(){
-    console.log('Running');
-  }
 }

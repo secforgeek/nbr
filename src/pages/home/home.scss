@@ -1,83 +1,68 @@
 page-home {
     .scroll-content{
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        overflow: hidden;
     }
 
-    ion-card, ion-card-content, ion-grid{
-        margin:0px!important;
-        padding:0px!important;
-        width:100%!important;
-    }
     ion-card{
-        margin-top:10px!important;
-        height:25%!important;   
+        top:35%!important;
+        position: absolute!important;
+        font-family: tango;
     }
 
+    .scroll-content{
+        overflow: hidden;
+    }
 
-    //test
-    ion-grid{
-        .div1{
-            .div1_img{
-                width:100%!important;
-                margin:0px auto; 
-            }
+    ion-card.card{
+        box-shadow: none;
+        background: rgba(0,0,0,0.5);
+        border-radius:5px;
+    }
+
+    a, p, ion-card-header.card-header{
+        color:#fff!important;
+    }
+
+    .item > .item-block:first-child{
+        border: medium none;
+    }
+
+    .item > .item-block .item-inner{
+        border: medium none;
+    }
+
+    .item{
+        margin-bottom: 10px;
+        background: rgba(255, 255, 255, 0.5);
+        border:medium none;
+
+        .text-input,{
+            color:#fff;
         }
 
-        .div2{
-            padding:0px!important;
-            h4{
-                font-size: 2.5vh;
-            }
-
-            .div2_title{
-                height:30%;
-                color:#7b8189;
-            }
-
-            .div2_category{
-                height:20%;
-                font-size: 12px;
-                margin-bottom: 10px;
-            }
-
-            .div2_category_options{
-                font-size: 12px;  
-            }
-
-            .div2_delivery_info{
-                height:20%;
-                font-size: 12px;
-                span{
-                    width:50%;
-                    color:gray;
-                    padding:0px;
-                    margin:0px;
-                    border-bottom:0px;
-                    border-right:solid 1px rgb(216, 207, 207);
-                    background:#f7f7f8;
-                }
-
-                ion-icon{
-                    padding-left:3px;
-                }
-            }
-
-            .div2_delivery_border{
-                border-left:1px solid rgb(216, 207, 207);
-            }
-
-            .div2_title, .div2_category, .div2_delivery_info{
-                margin:0px!important;
-                display: flex!important;
-                align-content: center!important;
-                align-items: center!important;
-            }
-
-            .div_delivery_info_border{
-                border-left:solid 1px#d9dce0;
-            }
+        input::-moz-placeholder{
+            color: #fff!important;
         }
 
+        input:-moz-placeholder{
+            color: #fff!important;
+        }
+
+        *::-webkit-input-placeholder{
+            color: #fff!important;
+        }
+
+        *:-ms-input-placeholder{
+            color: #fff!important;
+        }
+
+        *:-moz-placeholder{
+            color: #fff!important;
+        }
+    }
+    @font-face { 
+        font-family: "tango"; 
+        src: url("../assets/font/Tangerine-Bold.ttf"); 
     }
 
 }

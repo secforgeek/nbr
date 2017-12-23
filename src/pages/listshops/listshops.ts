@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
 })
 export class ListshopsPage {
 
-  constructor() {
+  constructor() {}
+
+  show(){
+    console.log('Running');
   }
 
 }

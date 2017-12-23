@@ -1,12 +1,90 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>listshops</ion-title>
-  </ion-navbar>
-
+    <ion-toolbar no-border-top>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="arrow-round-back"></ion-icon>
+        </button>
+        <ion-segment color="danger" [(ngModel)]="favorites" color="custom">
+            <ion-segment-button value="featured">
+            Category
+            </ion-segment-button>
+            <ion-segment-button value="recent">
+            Filter
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-toolbar no-border-top *ngIf="demo != 'Title'">
+            <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
-
-
-<ion-content padding>
-ds
+<ion-content>
+    <div *ngFor="let n of [0, 1, 2, 3, 4]">
+    <ion-card>
+        <ion-card-content (click)="show()">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col class="div1">
+                            <div class="div1_img">
+                                <img src="../assets/imgs/logo.png">
+                            </div>
+                        </ion-col>
+                        <ion-col col-9 class="div2">
+                            <div class="div2_title">
+                                <ion-badge color="badge">ABS Takeaway</ion-badge>
+                            </div>
+                            <div class="div2_category">
+                                <span>Indian, Pizza</span>
+                            </div>
+                            <div class="div2_category_options">
+                                <span>Delivery</span>
+                            </div>
+                            <div class="div2_delivery_info">
+                                <span text-center class="div2_delivery_border">Distance</span>
+                                <span text-center>Min Order</span>
+                                <span text-center>Delivery Fee</span>
+                            </div>
+                            <div class="div2_delivery_info">
+                                <span text-center class="div2_delivery_border"><ion-icon name="pin"></ion-icon>1.25 KM</span>
+                                <span text-center>50</span>
+                                <span text-center>10.65</span>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content (click)="show()">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col class="div1">
+                            <div class="div1_img">
+                                <img src="../assets/imgs/pro_logo.png">
+                            </div>
+                        </ion-col>
+                        <ion-col col-9 class="div2">
+                            <div class="div2_title">
+                                <ion-badge color="badge">ABS Takeaway</ion-badge>
+                            </div>
+                            <div class="div2_category">
+                                <span>Indian, Pizza</span>
+                            </div>
+                            <div class="div2_category_options">
+                                <span>Delivery</span>
+                            </div>
+                            <div class="div2_delivery_info">
+                                <span text-center class="div2_delivery_border">Delivery Fee</span>
+                                <span text-center>Min Order</span>
+                                <span text-center>Distance</span>
+                            </div>
+                            <div class="div2_delivery_info">
+                                <span text-center class="div2_delivery_border">10.65</span>
+                                <span text-center>50</span>
+                                <span text-center><ion-icon name="pin"></ion-icon>1.25 KM</span>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card-content>
+    </ion-card>
+</div>
 </ion-content>

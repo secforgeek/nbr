@@ -1,49 +1,16 @@
-<ion-header>
-    <ion-toolbar no-border-top>
-        <button ion-button icon-only menuToggle>
-            <ion-icon name="arrow-round-back"></ion-icon>
-        </button>
-        <ion-segment color="danger" [(ngModel)]="favorites" color="custom">
-            <ion-segment-button value="featured">
-            Category
-            </ion-segment-button>
-            <ion-segment-button value="recent">
-            Filter
-            </ion-segment-button>
-        </ion-segment>
-    </ion-toolbar>
-    <ion-toolbar no-border-top *ngIf="demo != 'Title'">
-            <ion-searchbar></ion-searchbar>
-    </ion-toolbar>
-</ion-header>
-<ion-content>
+<ion-content class="background">
         <ion-card>
-                +        <ion-card-content>
-                +            <ion-grid>
-                +                <ion-row>
-                +                    <ion-col class="div1">
-                +                       <div class="div1_img">
-                +                            <img src="../assets/imgs/pro_logo.png">
-                +                       </div>
-                +                       <div class="div1_distance">
-                +                            <p><ion-icon name="pin"></ion-icon>10.30KM</p>
-                +                       </div>
-                +                    </ion-col>
-                +                    <ion-col col-9 class="div2">
-                +                        <div class="div2_title">
-                +                            <p><b>Adils Takeaway</b></p>
-                +                        </div>
-                +                        <div class="div2_category">
-                +                            <b>Indian, Chinese, American</b>
-                +                        </div>
-                +                        <div class="div2_delivery_info">
-                +                            <span text-center>Delivery</span>
-                +                            <span text-center>Min Order</span>
-                +                            <span text-center>Distance</span>
-                +                        </div>
-                +                    </ion-col>
-                +                </ion-row>
-                +            </ion-grid>
-                +        </ion-card-content>
-                +    </ion-card>
+            <ion-card-content>
+                <ion-list no-line>
+                    <ion-item>
+                        <ion-label>Deliver to my location</ion-label>
+                        <ion-toggle [(ngModel)]="toggle"></ion-toggle>
+                    </ion-item>
+                    <ion-item *ngIf="!toggle">
+                        <ion-input type="text" placeholder="Postcode" name="username" ngModel></ion-input>
+                    </ion-item>
+                    <button ion-button block outline color='light' type="submit" (click)="move()">WatzNear</button>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
 </ion-content>

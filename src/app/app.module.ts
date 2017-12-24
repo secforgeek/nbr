@@ -18,7 +18,8 @@ import { AlertsProvider } from '../providers/alerts/alerts';
 import { StorageProvider } from '../providers/storage/storage';
 import { Toast } from '@ionic-native/toast';
 import { ListshopsPage } from '../pages/listshops/listshops';
-
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,8 @@ import { ListshopsPage } from '../pages/listshops/listshops';
     SplashScreen,
     StorageProvider,
     AuthProvider,
+    Geolocation,
+    NativeGeocoder,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AlertsProvider
   ]

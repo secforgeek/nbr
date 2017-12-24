@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { ListshopsPage } from '../listshops/listshops';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +10,9 @@ import { ListshopsPage } from '../listshops/listshops';
 export class HomePage {
 
   toggle = true;
+  address = null;
 
-  constructor(public navCtrl: NavController, public app: App) {
+  constructor(public navCtrl: NavController, public app: App, public auth: AuthProvider) {
 
   }
 
@@ -19,6 +21,7 @@ export class HomePage {
   }
 
   move(){
-    this.navCtrl.push(ListshopsPage);
+    //this.navCtrl.push(ListshopsPage);
+    this.auth.locationForward(this.address);
   }
 }

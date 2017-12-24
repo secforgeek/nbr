@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Toast } from '@ionic-native/toast';
 import { Platform, ToastController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class AlertsProvider {
 
-  constructor(public toast: Toast, public platform: Platform, private browsertoast: ToastController) {
+  constructor(
+    public toast: Toast, 
+    public platform: Platform, 
+    private browsertoast: ToastController, 
+    public alertCtrl: AlertController) {
     
   }
 
@@ -23,6 +28,15 @@ export class AlertsProvider {
       });
       toe.present();    
     }
+  }
+
+  fireAlert(title, msg){
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();    
   }
 
 }

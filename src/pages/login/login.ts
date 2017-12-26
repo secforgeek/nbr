@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AuthProvider } from '../../providers/auth/auth';
+import { PostmanProvider } from '../../providers/http/postman';
 import { AlertsProvider } from '../../providers/alerts/alerts';
 import sha256 from 'crypto-js/sha256';
 import { StorageProvider } from '../../providers/storage/storage';
@@ -17,7 +17,7 @@ export class LoginPage{
   successData = null;
 
 
-  constructor(public navCtrl: NavController, private authprovider: AuthProvider, private toast: AlertsProvider, private storage: StorageProvider) {
+  constructor(public navCtrl: NavController, private authprovider: PostmanProvider, private toast: AlertsProvider, private storage: StorageProvider) {
     console.log("login ts");
   }
 

@@ -52,5 +52,10 @@ export class StorageProvider {
     console.log("clear all data");
   }
 
+  getToken():Promise<string>{
+    return this.storage.get(this.DB_KEY_TOKEN).then(value => {
+      return value;
+    });
+  };
 
 }

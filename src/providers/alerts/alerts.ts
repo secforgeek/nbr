@@ -10,9 +10,8 @@ export class AlertsProvider {
     public toast: Toast, 
     public platform: Platform, 
     private browsertoast: ToastController, 
-    public alertCtrl: AlertController) {
-    
-  }
+    public alertCtrl: AlertController
+  ) { }
 
   fireToast(msg){
     if (this.platform.is('cordova')) {

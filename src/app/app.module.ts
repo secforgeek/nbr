@@ -13,13 +13,14 @@ import { SettingsPage } from '../pages/settings/settings';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-import { AuthProvider } from '../providers/auth/auth';
+import { PostmanProvider } from '../providers/http/postman';
 import { AlertsProvider } from '../providers/alerts/alerts';
 import { StorageProvider } from '../providers/storage/storage';
 import { Toast } from '@ionic-native/toast';
 import { ListshopsPage } from '../pages/listshops/listshops';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { LocationProvider } from '../providers/location/location';
 
 @NgModule({
   declarations: [
@@ -53,11 +54,12 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     StatusBar,
     SplashScreen,
     StorageProvider,
-    AuthProvider,
+    PostmanProvider,
     Geolocation,
     NativeGeocoder,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AlertsProvider
+    AlertsProvider,
+    LocationProvider
   ]
 })
 export class AppModule {}

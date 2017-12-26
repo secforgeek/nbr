@@ -6,8 +6,9 @@ import { AlertsProvider } from '../alerts/alerts';
 
 @Injectable()
 export class PostmanProvider {
-
-  url = 'http://192.168.0.6/api/auth';
+  host = '192.168.0.6';
+  auth_url = 'http://'+this.host+'/api/auth';
+  find_restro_url = 'http://'+this.host+'/api/findshops';
   data = null;
   loader = null;
   constructor(
@@ -17,6 +18,13 @@ export class PostmanProvider {
   AuthLogin(username, password){
     let htph = new HttpHeaders().set('content-type','application/json');
     let custom = {"username":username, "password":password.toString()};
-    return this.http.post(this.url, custom, {headers:htph});
+    return this.http.post(this.auth_url, custom, {headers:htph});
   }
+
+  ListStore(token, lat, lng, scat){
+    let htph = new HttpHeaders().set('content-type','application/json');
+    let custom = {"lat":lat, "lng":lng, "token":token, "scat":scat};
+    return this.http.post(this.find_restro_url, custom, {headers:htph});
+  }
+
 }

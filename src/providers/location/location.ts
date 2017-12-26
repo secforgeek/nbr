@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LocationProvider {
 
   constructor(
-    public platform: Platform,
-    private geolocation: Geolocation, 
+    public platform: Platform, 
     private nativeGeocoder: NativeGeocoder) {
 
       console.log("Location Class");
       
   }
 
-  locationForward(address){
-      this.nativeGeocoder.forwardGeocode(address).then((coordinates: NativeGeocoderForwardResult) => {
+  locationForward(address):Promise<any>{
+    return this.nativeGeocoder.forwardGeocode(address).then((coordinates: NativeGeocoderForwardResult) => {
         //TODO forward Success
-    })
-    .catch((error: any) => {
-        //TODO forward error
+        let val = {"status":"success","lat":coordinates.latitude, "lng":coordinates.longitude};
+        return val;
+    }).catch((error: any) => {
+        return {"status":"error", "message":error};
     });
   }
 
@@ -31,30 +29,6 @@ export class LocationProvider {
     })
     .catch((error: any) => {
         //TODO Reverse Error
-    });
-  }
-
-  test(){
-    console.log("Locked");
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 5000
-    };
-    
-    this.platform.ready().then(() => {
-      console.log("Platform Ready");
-      this.geolocation.getCurrentPosition(options).then(resp => {
-
-          if(resp.coords.accuracy < 75){
-            //return {'res': 'success', 'lat':resp.coords.latitude, 'lng':resp.coords.longitude};
-            console.log("Success" + resp.coords.latitude);
-          }else{
-            console.log("> 75");
-          }
-      }).catch(() => {
-        console.log("Error");
-        return 'false';
-      });
     });
   }
 

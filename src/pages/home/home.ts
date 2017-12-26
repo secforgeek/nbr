@@ -5,6 +5,8 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { Platform } from 'ionic-angular/platform/platform';
 import { StorageProvider } from '../../providers/storage/storage';
 import { ListshopsPage } from '../listshops/listshops';
+import { LocationProvider } from '../../providers/location/location';
+import { AlertsProvider } from '../../providers/alerts/alerts';
 
 @Component({
   selector: 'page-home',
@@ -22,7 +24,9 @@ export class HomePage {
     public loading: LoadingController,
     public platform: Platform,
     public geolocation:Geolocation,
-    private storage: StorageProvider
+    private storage: StorageProvider,
+    public location: LocationProvider,
+    public alert: AlertsProvider
   ) { }
 
   move(){
@@ -40,39 +44,56 @@ export class HomePage {
     }, 2000);
   }
 
-
-
   findrestro(){
     console.log("Locked");
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 5000
-    };
-    
-    this.platform.ready().then(() => {
-      console.log("Platform Ready");
-      this.geolocation.getCurrentPosition(options).then(resp => {
-          if(resp.coords.accuracy < 75){
+    if(this.toggle){
+      let options = {
+        enableHighAccuracy: true,
+        timeout: 5000
+      };
+      
+      this.platform.ready().then(() => {
+        console.log("Platform Ready");
+        this.geolocation.getCurrentPosition(options).then(resp => {
+            if(resp.coords.accuracy < 75){
+              this.storage.getToken().then(value => {
+                console.log(value);
+                console.log(resp.coords.latitude, resp.coords.longitude);
+                let data = {
+                  "token":value,
+                  "lat":resp.coords.latitude,
+                  "lng":resp.coords.longitude
+                };
+  
+                this.navCtrl.push(ListshopsPage, data);
+              });
+            }else{
+              this.toggle = false;
+              console.log("Toggle False 1");
+            }
+        }).catch(() => {
+          this.toggle = false;
+          console.log("Toggle False 2");
+        });
+      });
+    }else{
+      console.log(this.address);
+      this.location.locationForward(this.address).then(success => {
+          if(success['status'] === "success"){
             this.storage.getToken().then(value => {
-              //console.log(value);
-              //console.log(resp.coords.latitude, resp.coords.longitude);
               let data = {
                 "token":value,
-                "lat":resp.coords.latitude,
-                "lng":resp.coords.longitude
+                "lat":success['lat'],
+                "lng":success['lng']
               };
-
+              console.log(data);
               this.navCtrl.push(ListshopsPage, data);
             });
           }else{
-            this.toggle = false;
-            console.log("Toggle False 1");
+            this.alert.fireToast("Unable to locate your location")
           }
-      }).catch(() => {
-        this.toggle = false;
-        console.log("Toggle False 2");
       });
-    });
+    }
   }
 
 }

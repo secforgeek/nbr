@@ -58,7 +58,7 @@ export class HomePage {
             if(resp.coords.accuracy < 75){
               this.storage.getToken().then(value => {
                 console.log(value);
-                console.log(resp.coords.latitude, resp.coords.longitude);
+                console.log(resp.coords.latitude, resp.coords.longitude, resp.coords.accuracy);
                 let data = {
                   "token":value,
                   "lat":resp.coords.latitude,

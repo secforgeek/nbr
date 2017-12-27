@@ -4,7 +4,7 @@
             <ion-icon name="arrow-round-back"></ion-icon>
         </button>
         <ion-segment color="danger" [(ngModel)]="favorites" color="custom">
-            <ion-segment-button value="featured">
+            <ion-segment-button value="category" (click)="filterBtn()">
             Category
             </ion-segment-button>
             <ion-segment-button value="recent">
@@ -18,39 +18,78 @@
 </ion-header>
 <ion-content>
     <div *ngIf="apiresult">
-        <ion-card *ngFor="let store of stores">
-            <ion-card-content (click)="show()">
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col class="div1">
-                                <div class="div1_img">
-                                    <img src="../assets/imgs/logo.png">
-                                </div>
-                            </ion-col>
-                            <ion-col col-9 class="div2">
-                                <div class="div2_title">
-                                    <ion-badge color="badge">{{store.name}}</ion-badge>
-                                </div>
-                                <div class="div2_category">
-                                    <span>{{store.cuisine}}</span>
-                                </div>
-                                <div class="div2_category_options">
-                                    <span>Delivery</span>
-                                </div>
-                                <div class="div2_delivery_info">
-                                    <span text-center class="div2_delivery_border">Distance</span>
-                                    <span text-center>Min Order</span>
-                                    <span text-center>Delivery Fee</span>
-                                </div>
-                                <div class="div2_delivery_info">
-                                    <span text-center class="div2_delivery_border"><ion-icon name="pin"></ion-icon>{{store.distance}} KM</span>
-                                    <span text-center>{{ store.minimum_order }}</span>
-                                    <span text-center>{{ store.delivery_fee }}</span>
-                                </div>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-card-content>
-        </ion-card>
+        <ng-container *ngIf="filterData == null; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate> <!-- -->
+            <ion-card *ngFor="let store of stores">
+                    <ion-card-content (click)="show()">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col class="div1">
+                                        <div class="div1_img">
+                                            <img src="../assets/imgs/logo.png">
+                                        </div>
+                                    </ion-col>
+                                    <ion-col col-9 class="div2">
+                                        <div class="div2_title">
+                                            <ion-badge color="badge">{{store.name}}</ion-badge>
+                                        </div>
+                                        <div class="div2_category">
+                                            <span>{{store.cuisine}}</span>
+                                        </div>
+                                        <div class="div2_category_options">
+                                            <span>Delivery</span>
+                                        </div>
+                                        <div class="div2_delivery_info">
+                                            <span text-center class="div2_delivery_border">Distance</span>
+                                            <span text-center>Min Order</span>
+                                            <span text-center>Delivery Fee</span>
+                                        </div>
+                                        <div class="div2_delivery_info">
+                                            <span text-center class="div2_delivery_border"><ion-icon name="pin"></ion-icon>{{store.distance}} KM</span>
+                                            <span text-center>{{ store.minimum_order }}</span>
+                                            <span text-center>{{ store.delivery_fee }}</span>
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card-content>
+                </ion-card>
+        </ng-template>
+        <ng-template #elseTemplate>
+            <ion-card *ngFor="let store of filterData">
+                    <ion-card-content (click)="show()">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col class="div1">
+                                        <div class="div1_img">
+                                            <img src="../assets/imgs/logo.png">
+                                        </div>
+                                    </ion-col>
+                                    <ion-col col-9 class="div2">
+                                        <div class="div2_title">
+                                            <ion-badge color="badge">{{store.name}}</ion-badge>
+                                        </div>
+                                        <div class="div2_category">
+                                            <span>{{store.cuisine}}</span>
+                                        </div>
+                                        <div class="div2_category_options">
+                                            <span>Delivery</span>
+                                        </div>
+                                        <div class="div2_delivery_info">
+                                            <span text-center class="div2_delivery_border">Distance</span>
+                                            <span text-center>Min Order</span>
+                                            <span text-center>Delivery Fee</span>
+                                        </div>
+                                        <div class="div2_delivery_info">
+                                            <span text-center class="div2_delivery_border"><ion-icon name="pin"></ion-icon>{{store.distance}} KM</span>
+                                            <span text-center>{{ store.minimum_order }}</span>
+                                            <span text-center>{{ store.delivery_fee }}</span>
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card-content>
+                </ion-card>
+        </ng-template>
     </div>
 </ion-content>

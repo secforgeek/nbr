@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { PostmanProvider } from '../../providers/http/postman';
 import { AlertsProvider } from '../../providers/alerts/alerts';
 
@@ -23,7 +23,8 @@ export class ListshopsPage {
     public navparam:NavParams,
     public postman:PostmanProvider,
     public loading:LoadingController,
-    public alert:AlertsProvider
+    public alert:AlertsProvider,
+    public alertCtrl: AlertController
   ) {
 
     //getting value
@@ -63,6 +64,7 @@ export class ListshopsPage {
         }
       }, error => {
           loader.dismiss();
+          console.log(error);
           this.alert.fireAlert("Error", "Please check your internet");
       }, () => {
         loader.dismiss();
@@ -81,6 +83,38 @@ export class ListshopsPage {
     }else{
       this.filterData = null;
     }
+  }
+
+  filterBtn(){
+    let al = this.alertCtrl.create();
+    al.setTitle('Shop Filters');
+    al.addInput({
+      type: 'radio',
+      label:'All',
+      value: 'All',
+      checked:true
+    });
+    let menus = new Array();
+    for(let entry of this.stores){
+      let split = entry.cuisine.split(", ");
+      for(let sp of split){
+          al.addInput({
+            type: 'radio',
+            label: sp,
+            value: sp
+          });
+      }
+    }
+    al.addButton({
+      text:'Ok',
+      handler: (data: any) => {
+        console.log("Selected : "+data);
+      }
+    });
+
+    al.addButton('Cancel');
+    al.present();
+    console.log(menus);
   }
 
   ngOnInit(){

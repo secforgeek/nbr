@@ -14,6 +14,7 @@ export class ListshopsPage {
   token = null;
   lat = null;
   lng = null;
+  selectedFilter = null;
   successData = null;
   stores:Apidata[] = null;
   filterData:Apidata[] = null;
@@ -65,7 +66,7 @@ export class ListshopsPage {
       }, error => {
           loader.dismiss();
           console.log(error);
-          this.alert.fireAlert("Error", "Please check your internet");
+          this.alert.fireAlertandPop("Error", "Please check your internet", this.navCtrl);
       }, () => {
         loader.dismiss();
         console.log("Completed Tasks");
@@ -85,29 +86,58 @@ export class ListshopsPage {
     }
   }
 
+  filterByFilterOption(fil_val:string){
+    if(fil_val == "All"){
+      this.filterData = null;
+    }else{
+      this.filterData = this.stores.filter(function(item){
+        return item.cuisine.toLowerCase().includes(fil_val.toLowerCase());
+      });
+    }
+  }
+
   filterBtn(){
     let al = this.alertCtrl.create();
     al.setTitle('Shop Filters');
-    al.addInput({
-      type: 'radio',
-      label:'All',
-      value: 'All',
-      checked:true
-    });
+    if(this.selectedFilter == null || this.selectedFilter == "All"){
+        al.addInput({
+          type: 'radio',
+          label:'All',
+          value: 'All',
+          checked:true
+        });
+    }else{
+      al.addInput({
+        type: 'radio',
+        label:'All',
+        value: 'All'
+      });
+    }
     let menus = new Array();
     for(let entry of this.stores){
       let split = entry.cuisine.split(", ");
       for(let sp of split){
+        if(sp == this.selectedFilter){
+          al.addInput({
+            type: 'radio',
+            label: sp,
+            value: sp,
+            checked: true
+          });
+        }else{
           al.addInput({
             type: 'radio',
             label: sp,
             value: sp
           });
+        }
       }
     }
     al.addButton({
       text:'Ok',
       handler: (data: any) => {
+        this.selectedFilter = data;
+        this.filterByFilterOption(data);
         console.log("Selected : "+data);
       }
     });

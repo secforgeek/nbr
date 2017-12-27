@@ -38,4 +38,16 @@ export class AlertsProvider {
     alert.present();    
   }
 
+  fireAlertandPop(title, msg, navctrl){
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.onDidDismiss(res => {
+      navctrl.pop();
+    });
+    alert.present(); 
+    }  
+
 }

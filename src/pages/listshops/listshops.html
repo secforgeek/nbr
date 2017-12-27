@@ -5,10 +5,10 @@
         </button>
         <ion-segment color="danger" [(ngModel)]="favorites" color="custom">
             <ion-segment-button value="category" (click)="filterBtn()">
-            Category
+                Category
             </ion-segment-button>
             <ion-segment-button value="recent">
-            Filter
+                Filter
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
@@ -21,7 +21,7 @@
         <ng-container *ngIf="filterData == null; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate> <!-- -->
             <ion-card *ngFor="let store of stores">
-                    <ion-card-content (click)="show()">
+                    <ion-card-content (click)="showMenu(store.shopid)">
                             <ion-grid>
                                 <ion-row>
                                     <ion-col class="div1">

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,6 +21,7 @@ import { ListshopsPage } from '../pages/listshops/listshops';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { LocationProvider } from '../providers/location/location';
+import { ShowmenuPage } from '../pages/showmenu/showmenu';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LocationProvider } from '../providers/location/location';
     HomePage,
     TabsPage,
     LoginPage,
-    ListshopsPage
+    ListshopsPage,
+    ShowmenuPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { LocationProvider } from '../providers/location/location';
     HomePage,
     TabsPage,
     LoginPage,
-    ListshopsPage
+    ListshopsPage,
+    ShowmenuPage
   ],
   providers: [
     Toast,

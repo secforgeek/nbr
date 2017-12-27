@@ -58,4 +58,16 @@ export class StorageProvider {
     });
   };
 
+  setMenu(checksum, menu):Promise<boolean>{
+    return this.storage.set(checksum, menu).then(value => {
+        return true;
+    });
+  }
+
+  getMenu(checksum):Promise<any>{
+    return this.storage.get(checksum).then(val=>{
+      return val;
+    });
+  }
+
 }

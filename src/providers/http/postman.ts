@@ -6,9 +6,11 @@ import { AlertsProvider } from '../alerts/alerts';
 
 @Injectable()
 export class PostmanProvider {
-  host = '192.168.0.6';
-  auth_url = 'http://'+this.host+'/api/auth';
-  find_restro_url = 'http://'+this.host+'/api/findshops';
+  host = 'http://192.168.0.6';
+  auth_url = this.host+'/api/auth';
+  find_restro_url = this.host+'/api/findshops';
+  getmenu_url = this.host+'/api/getmenu';
+
   data = null;
   loader = null;
   constructor(
@@ -25,6 +27,12 @@ export class PostmanProvider {
     let htph = new HttpHeaders().set('content-type','application/json');
     let custom = {"lat":lat, "lng":lng, "token":token, "scat":scat};
     return this.http.post(this.find_restro_url, custom, {headers:htph});
+  }
+
+  Getmenu(token, restid){
+    let htph = new HttpHeaders().set('content-type','application/json');
+    let custom = {"token":token, "restid":restid};
+    return this.http.post(this.getmenu_url, custom, {headers:htph}); 
   }
 
 }

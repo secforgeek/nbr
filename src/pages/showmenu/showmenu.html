@@ -1,9 +1,44 @@
 <ion-header>
   <ion-navbar>
+    <ion-title>
+      Academy Pizza
+    </ion-title>
   </ion-navbar>
 </ion-header>
-
-
-<ion-content padding>
-
+ 
+<ion-content>
+  <ion-list class="accordion-list">
+    <!-- First Level -->
+    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+      <!-- Toggle Button -->
+      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+        <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+          {{ item.category_name }}
+      </button>
+      <ion-list *ngIf="item.category_child && item.open" no-lines>
+        <!-- Second Level -->
+        <ion-list-header *ngFor="let child of item.category_child; let j = index" no-padding>
+ 
+          <!-- Direct Add Button as Fallback -->
+          <ion-item *ngIf="!child.category_child" ion-item detail-none class="child-item" text-wrap>
+            <h2>{{ child.item_topic }}</h2>
+            <p text-lowercase>{{ child.item_desc }}</p>
+            <button ion-button outline item-end (click)="buyItem(child)">{{ child.price }}</button>
+          </ion-item>
+ 
+          <ion-list *ngIf="child.children && child.open">
+            <!-- Third Level -->
+            <ion-item *ngFor="let item of child.children; let k = index" detail-none class="child-item" text-wrap>
+              <h2>{{ item.name }}</h2>
+              <p text-lowercase>{{ item.information }}</p>
+              <!-- Direct Add Button -->
+              <button ion-button outline item-end (click)="buyItem(item)">{{ item.price }}</button>
+            </ion-item>
+          </ion-list>
+ 
+        </ion-list-header>
+      </ion-list>      
+    </ion-list-header>
+  </ion-list>
 </ion-content>

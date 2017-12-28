@@ -13,6 +13,7 @@ page-showmenu {
             background: #fff;
             color: #000;
             margin-bottom: 4px;
+
         }
         .section-active {
             background: #ffc400;
@@ -22,17 +23,14 @@ page-showmenu {
         .child {
             background: #e8e7e6;
             color: #000;
-            margin-bottom: 4px;
         }
         .child-item {
             background: #f3f2f1;
             padding: 10px;
         }
         .label {
-            margin: 0px;
-        }
-        .list {
-            margin-bottom: 4px;
+            margin: 0px!important;
+            padding:0px!important;
         }
     }
 
@@ -44,7 +42,7 @@ page-showmenu {
     ion-card{
         width:100%!important;   
         height:30%!important;  
-        //background:orange;
+        background:orange;
     }
 
     .div{
@@ -54,7 +52,7 @@ page-showmenu {
         background: #fffd76;
         .div1{
             height:50%!important;
-           // background:yellow;
+            //background:yellow;
 
             img{
                 max-width: 22.5%!important;
@@ -78,9 +76,11 @@ page-showmenu {
 
         .div4{
             height:25%!important;
-            //background:rgb(165, 165, 233);
+            padding:0px!important;
+            margin:0px!important;
             span{
                 width:33.33%!important;
+                height:50%!important;
                 float:left;
                 border-left:solid 1px gray;
                 font-size: small;
@@ -90,9 +90,4 @@ page-showmenu {
 
 
     }
-
-
-
-      
-
 }

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular'
 import { OrdersPage } from '../orders/orders';
 import { SettingsPage } from '../settings/settings';
-//import { ListshopsPage } from '../listshops/listshops';
-//import { ShowmenuPage } from '../showmenu/showmenu';
+import { ListshopsPage } from '../listshops/listshops';
+import { ShowmenuPage } from '../showmenu/showmenu';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -11,8 +11,8 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = HomePage; //ShowmenuPage;
-  tab2Root = OrdersPage;//ListshopsPage;//
+  tab1Root = ShowmenuPage;//HomePage; 
+  tab2Root = ListshopsPage;////OrdersPage;
   tab3Root = SettingsPage;
   mySelectedIndex: number;
 

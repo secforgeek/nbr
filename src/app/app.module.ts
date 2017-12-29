@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { OrdersPage } from '../pages/orders/orders';
+import { CartPage } from '../pages/cart/cart';
 import { SettingsPage } from '../pages/settings/settings';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -26,7 +26,7 @@ import { ShowmenuPage } from '../pages/showmenu/showmenu';
 @NgModule({
   declarations: [
     MyApp,
-    OrdersPage,
+    CartPage,
     SettingsPage,
     HomePage,
     TabsPage,
@@ -44,7 +44,7 @@ import { ShowmenuPage } from '../pages/showmenu/showmenu';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    OrdersPage,
+    CartPage,
     SettingsPage,
     HomePage,
     TabsPage,

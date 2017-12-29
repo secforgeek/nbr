@@ -45,4 +45,8 @@ export class ShowmenuPage {
     this.information[i].open = !this.information[i].open;
   }
 
+  AddItem(input){
+    console.log(input);
+  }
+
 }

@@ -2,49 +2,6 @@ page-showmenu {
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-    ion-navbar, ion-header{
-       background:#fffd76!important; 
-    }
-
-    .accordion-list {
-        background: color($colors, light);
-        height: auto;
-        .section {
-            background: #fff;
-            color: #000;
-            margin-bottom: 4px;
-
-        }
-        .section-active {
-            background: #ffc400;
-            color: #fff;
-        }
-        
-        .child {
-            background: #e8e7e6;
-            color: #000;
-        }
-        .child-item {
-            background: #f3f2f1;
-            padding: 10px;
-        }
-        .label {
-            margin: 0px!important;
-            padding:0px!important;
-        }
-    }
-
-    ion-card, .div{
-        padding:0px!important;
-        margin:0px!important;
-    }
-
-    ion-card{
-        width:100%!important;   
-        height:30%!important;  
-        background:orange;
-    }
-
     .div{
         //background:green;
         width:100%!important;
@@ -87,7 +44,64 @@ page-showmenu {
                 background:#dddf7a;
             }
         }
-
-
     }
+
+    ion-navbar, ion-header{
+       background:#fffd76!important; 
+    }
+
+    .accordion-list {
+        background: color($colors, light);
+        height: auto;
+   
+        .section {
+            background:#fff;
+            color: #000;
+        }
+
+        .section-active {
+            background: #fffd76;
+            color: #000;
+        }
+        
+        .child-item {
+            background:#f3f2f1;
+            padding: 2px;
+            border-bottom:1px solid gray;
+        }
+
+        .label {
+            margin: 0px!important;
+            padding:0px!important;
+        }
+
+        h2{
+            text-transform: capitalize;
+        }
+
+        .inner_item{
+            margin: 0px!important;
+            padding:0px;
+        }
+
+        .item_desc{
+            padding:10px;
+            text-align: justify;
+        }
+
+        .price{
+            width:20%!important;
+        }
+    }
+
+    ion-card, .div, ion-list-header{
+        padding:0px!important;
+        margin:0px!important;
+    }
+
+    ion-card{
+        width:100%!important;   
+        height:30%!important;  
+    }
+
 }

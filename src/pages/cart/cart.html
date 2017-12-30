@@ -2,9 +2,10 @@
 <div class="div1">
     <div class="div1_inner1">
         <h6>Order Summary</h6>
-        <h5>£20.30</h5>
+        <h5 *ngIf="cartFound">&#8377; {{ totalAmount.toFixed(2) }}</h5>
+        <h5 *ngIf="!cartFound">&#8377; {{ 0 }}</h5>
     </div>
-    <div class="div1_inner2">
+    <div class="div1_inner2" *ngIf="cartFound">
         <div class="div1_inner2_one">
             <h6>Delivery</h6>
             <ion-checkbox [(ngModel)]="delivery"></ion-checkbox>
@@ -16,14 +17,34 @@
     </div>
 </div>
 <div class="div2">
-    <div class="line">
-        <span class="title">fsdfdsf</span>
-        <span class="quan">
-            <ion-icon name="remove" class="left"></ion-icon>
-            <span class="quan_no">12</span>
-            <ion-icon name="add-circle" class="right"></ion-icon>
-        </span>
-        <span class="item_price">£100</span>
-    </div>
+    <ng-container *ngIf="cartFound; else elseTemplate">
+        <div class="line" *ngFor="let cart of cartItem; let i = index">
+            <span class="title">{{cart.item}}</span>
+            <span class="quan">
+                <ion-icon name="remove" class="left" (click)="remove(i, cart.item_topic_id)"></ion-icon>
+                <span class="quan_no">{{ cart.quantity }}</span>
+                <ion-icon name="add-circle" class="right" (click)="add(cart.item_topic_id)"></ion-icon>
+            </span>
+            <span class="item_price">&#8377;{{ (cart.quantity * cart.price).toFixed(2) }}</span>
+        </div>
+        <div class="total">
+            <div class="total_item">
+                <span>Sub Total</span>
+                <span>Delivery & Service Charge</span>
+                <span><b>Total</b></span>
+            </div>
+
+            <div class="total_price">
+                <span>&#8377; {{ totalAmount.toFixed(2) }}</span>
+                <span>0.00</span>
+                <span><b>0.00</b></span>
+            </div>
+        </div>      
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div class="noitem">
+            <h6 text-center>Basket Empty!</h6>
+        </div>
+    </ng-template>
 </div>
 </ion-content>

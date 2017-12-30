@@ -5,6 +5,8 @@ import { Storage } from '@ionic/storage';
 export class StorageProvider {
   DB_KEY_TOKEN = 'token';
   DB_KEY_TOKEN_ISSET = 'tokenisset';
+  cart:any[] = [];
+  delivery_charge:number;
 
   constructor(public storage: Storage) { console.log("Storage Class");  }
 
@@ -68,6 +70,24 @@ export class StorageProvider {
     return this.storage.get(checksum).then(val=>{
       return val;
     });
+  }
+
+  setCart(cart){
+    console.log("set cart");
+    this.cart = cart;
+  }
+
+  getCart(){
+    console.log("get cart");
+    return this.cart;
+  }
+
+  setDeliveryCharge(price){
+    this.delivery_charge = price;
+  }
+
+  getDeliveryCharge(){
+    return this.delivery_charge;
   }
 
 }

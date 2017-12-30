@@ -182,8 +182,13 @@ export class ListshopsPage {
     console.log("%c onViewWillUnLoad", 'background: #222; color: #bada55');
   }
 
-  showMenu(shopid){
+  showMenu(name, cuisine, distance, minimum_order, delivery_fee, shopid){
     let data = {
+      "name":name,
+      "cuisine":cuisine,
+      "distance":distance,
+      "min_order":minimum_order,
+      "delivery_fee":delivery_fee,
       "shopid":shopid,
       "token":this.token
     };

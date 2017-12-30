@@ -8,11 +8,11 @@
     <div class="div1_inner2" *ngIf="cartFound">
         <div class="div1_inner2_one">
             <h6>Delivery</h6>
-            <ion-checkbox [(ngModel)]="delivery"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="delivery" (ionChange)="dupdate(delivery)"></ion-checkbox>
         </div>
         <div class="div1_inner2_two">
             <h6>Collection</h6>
-            <ion-checkbox [(ngModel)]="collection"></ion-checkbox>           
+            <ion-checkbox [(ngModel)]="collection" (ionChange)="cupdate(collection)"></ion-checkbox>           
         </div>
     </div>
 </div>
@@ -36,8 +36,8 @@
 
             <div class="total_price">
                 <span>&#8377; {{ totalAmount.toFixed(2) }}</span>
-                <span>0.00</span>
-                <span><b>0.00</b></span>
+                <span>&#8377; {{ charges.toFixed(2) }}</span>
+                <span><b>&#8377; {{ finalAmount.toFixed(2) }}</b></span>
             </div>
         </div>      
     </ng-container>

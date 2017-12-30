@@ -32,15 +32,9 @@ export class ListshopsPage {
   ) {
 
     //getting value
-    /*
     this.token = this.navparam.get('token');
     this.lat = this.navparam.get('lat');
     this.lng = this.navparam.get('lng');
-    */
-
-    this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQzMjA2NzMsImV4cCI6MzAyOTg1MDk0NiwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.ZFMAcA0vTG18GJHm9jE-xWNw1KNI7im8GJ20a5KKpdbJD5zVVQDyXLgtbgJWtMo-oSFtKGg1BbPMokMoLeDNEFQmZQ9HEEQyl4-kks1_toPU4yc5ZgBeD2-qsMruiig0KSKC-pJoftpVRbKVO37Or33J6EvN4-3g93_agvqri2E";
-    this.lat = 54.967574;
-    this.lng = -2.078040;
   }
 
   ionViewDidLoad(){
@@ -66,7 +60,8 @@ export class ListshopsPage {
 
           case "logout":
             this.alert.fireAlert("Session Expired", "Login Again");
-            this.storage.resetAll();
+            console.log(success);
+            //this.storage.resetAll();
           break;
 
           default:

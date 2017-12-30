@@ -57,7 +57,7 @@
         </ng-template>
         <ng-template #elseTemplate>
             <ion-card *ngFor="let store of filterData">
-                    <ion-card-content (click)="show()">
+                    <ion-card-content (click)="showMenu(store.name, store.cuisine, store.distance, store.minimum_order, store.delivery_fee, store.shopid)">
                             <ion-grid>
                                 <ion-row>
                                     <ion-col class="div1">

@@ -1,48 +1,51 @@
 <ion-content>
     <ion-card>
+      <ion-icon class="icon-back" name="arrow-back" (click)="back()"></ion-icon>
         <ion-card-content class="div">
             <div class="div1">
-              <img src="../assets/imgs/pro_logo.png">
+              <img src="http://www.bonamyfinch.com/wp-content/uploads/2014/07/logo_adidas.png">
             </div>
             <div class="div2">
-                <span>Adils Takeaway</span>
+                <span>{{name}}</span>
             </div>
             <div class="div3">
-                <b>Indian, Chinese, American</b>
+                <b>{{cuisine}}</b>
             </div>
             <div class="div4">
-                <span text-center>Delivery</span>
+                <span text-center>Delivery Fee</span>
                 <span text-center>Min Order</span>
                 <span text-center>Distance</span>
-                <span text-center>1.5 KM</span>
-                <span text-center>10.20</span>
-                <span text-center><ion-icon name="pin"></ion-icon>1.09 KM</span>
+                <span text-center>{{delivery_fee}}</span>
+                <span text-center>{{min_order}}</span>
+                <span text-center><ion-icon name="pin"></ion-icon>{{distance}} KM</span>
             </div>                         
         </ion-card-content>
     </ion-card>
-  <ion-list class="accordion-list">
-    <!-- First Level -->
-    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-      <!-- Toggle Button -->
-      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-        <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-        <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-          {{ item.category_name }}
-      </button>
-      <ion-list *ngIf="item.category_child && item.open" class="inner_item" no-lines>
-        <!-- Second Level -->
-        <ion-list-header *ngFor="let child of item.category_child; let j = index" no-padding>
- 
-          <!-- Direct Add Button as Fallback -->
-          <ion-item *ngIf="!child.category_child" ion-item detail-none class="child-item" text-wrap>
-            <h2>{{ child.item_topic }}</h2>
-            <p text-lowercase *ngIf="child.item_desc_yn === 'Y'" class="item_desc">{{ child.item_desc }}</p>
-            <button ion-button outline item-end (click)="AddItem(item.category_name, child)" class="price">{{ "&#8377;"+ "  " + child.price }}</button>
-          </ion-item>
+    <div *ngIf="foundData">
+      <ion-list class="accordion-list">
+        <!-- First Level -->
+        <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+          <!-- Toggle Button -->
+          <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+            <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+            <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+              {{ item.category_name }}
+          </button>
+          <ion-list *ngIf="item.category_child && item.open" class="inner_item" no-lines>
+            <!-- Second Level -->
+            <ion-list-header *ngFor="let child of item.category_child; let j = index" no-padding>
+    
+              <!-- Direct Add Button as Fallback -->
+              <ion-item *ngIf="!child.category_child" ion-item detail-none class="child-item" text-wrap>
+                <h2>{{ child.item_topic }}</h2>
+                <p text-lowercase *ngIf="child.item_desc_yn === 'Y'" class="item_desc">{{ child.item_desc }}</p>
+                <button ion-button outline item-end (click)="AddItem(item.category_name, child)" class="price">{{ "&#8377;"+ "  " + child.price }}</button>
+              </ion-item>
+            </ion-list-header>
+          </ion-list>      
         </ion-list-header>
-      </ion-list>      
-    </ion-list-header>
-  </ion-list>
+      </ion-list>
+    </div>
 </ion-content>
 <!--
 GBP = &#163;

@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-navbar>
-  </ion-navbar>
-</ion-header>
- 
 <ion-content>
     <ion-card>
         <ion-card-content class="div">
@@ -42,7 +37,7 @@
           <ion-item *ngIf="!child.category_child" ion-item detail-none class="child-item" text-wrap>
             <h2>{{ child.item_topic }}</h2>
             <p text-lowercase *ngIf="child.item_desc_yn === 'Y'" class="item_desc">{{ child.item_desc }}</p>
-            <button ion-button outline item-end (click)="AddItem(child)" class="price">{{ "&#8377;"+ "  " + child.price }}</button>
+            <button ion-button outline item-end (click)="AddItem(item.category_name, child)" class="price">{{ "&#8377;"+ "  " + child.price }}</button>
           </ion-item>
         </ion-list-header>
       </ion-list>      

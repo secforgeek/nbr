@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, App, LoadingController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Platform } from 'ionic-angular/platform/platform';
 import { StorageProvider } from '../../providers/storage/storage';
 import { ListshopsPage } from '../listshops/listshops';

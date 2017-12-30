@@ -1,3 +1,29 @@
-<ion-content padding>
-
+<ion-content>
+<div class="div1">
+    <div class="div1_inner1">
+        <h6>Order Summary</h6>
+        <h5>£20.30</h5>
+    </div>
+    <div class="div1_inner2">
+        <div class="div1_inner2_one">
+            <h6>Delivery</h6>
+            <ion-checkbox [(ngModel)]="delivery"></ion-checkbox>
+        </div>
+        <div class="div1_inner2_two">
+            <h6>Collection</h6>
+            <ion-checkbox [(ngModel)]="collection"></ion-checkbox>           
+        </div>
+    </div>
+</div>
+<div class="div2">
+    <div class="line">
+        <span class="title">fsdfdsf</span>
+        <span class="quan">
+            <ion-icon name="remove" class="left"></ion-icon>
+            <span class="quan_no">12</span>
+            <ion-icon name="add-circle" class="right"></ion-icon>
+        </span>
+        <span class="item_price">£100</span>
+    </div>
+</div>
 </ion-content>

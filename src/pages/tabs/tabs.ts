@@ -10,8 +10,8 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = ShowmenuPage; //HomePage; 
-  tab2Root = CartPage;//
+  tab1Root = CartPage; //HomePage; 
+  tab2Root = ShowmenuPage;//
   tab3Root = SettingsPage;
   mySelectedIndex: number;
 

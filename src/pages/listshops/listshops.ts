@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, AlertController } from 'io
 import { PostmanProvider } from '../../providers/http/postman';
 import { AlertsProvider } from '../../providers/alerts/alerts';
 import { ShowmenuPage } from '../../pages/showmenu/showmenu';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-listshops',
@@ -26,7 +27,8 @@ export class ListshopsPage {
     public postman:PostmanProvider,
     public loading:LoadingController,
     public alert:AlertsProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public storage: StorageProvider
   ) {
 
     //getting value
@@ -60,6 +62,11 @@ export class ListshopsPage {
             this.stores = this.successData.response.data;
             console.log(this.stores);
             this.apiresult = true;
+          break;
+
+          case "logout":
+            this.alert.fireAlert("Session Expired", "Login Again");
+            this.storage.resetAll();
           break;
 
           default:

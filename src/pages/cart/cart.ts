@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
-import { StorageProvider } from '../../providers/storage/storage';
+import { CommunicationProvider } from '../../providers/communication/communication';
 @Component({
   selector: 'page-cart',
   templateUrl: 'cart.html'
@@ -18,12 +18,12 @@ export class CartPage {
   collection:boolean = false;
   todeliver:boolean = true;
 
-  constructor(public navCtrl: NavController, public events:Events, private storage: StorageProvider) {
+  constructor(public navCtrl: NavController, public events:Events, private communication: CommunicationProvider) {
     console.log("Loaded Cart");
   }
 
   ionViewWillEnter(){
-    this.cartItem = this.storage.getCart();
+    this.cartItem = this.communication.getCart();
     this.updateTotal();
   }
 
@@ -50,7 +50,7 @@ export class CartPage {
   }
 
   updateGlobalCart(cart){
-    this.storage.setCart(cart, this.storage.getShopId());
+    this.communication.setCart(cart, this.communication.getShopId());
     this.updateTotal();
     this.events.publish('cart:items', cart);
   }

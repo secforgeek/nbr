@@ -7,6 +7,7 @@ export class StorageProvider {
   DB_KEY_TOKEN_ISSET = 'tokenisset';
   cart:any[] = [];
   delivery_charge:number;
+  shopid:string = null;
 
   constructor(public storage: Storage) { console.log("Storage Class");  }
 
@@ -72,14 +73,19 @@ export class StorageProvider {
     });
   }
 
-  setCart(cart){
+  setCart(cart, shopid){
     console.log("set cart");
     this.cart = cart;
+    this.shopid = shopid;
   }
 
   getCart(){
     console.log("get cart");
     return this.cart;
+  }
+
+  getShopId(){
+    return this.shopid;
   }
 
   setDeliveryCharge(price){

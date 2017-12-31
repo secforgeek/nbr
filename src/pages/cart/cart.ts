@@ -50,7 +50,7 @@ export class CartPage {
   }
 
   updateGlobalCart(cart){
-    this.storage.setCart(cart);
+    this.storage.setCart(cart, this.storage.getShopId());
     this.updateTotal();
     this.events.publish('cart:items', cart);
   }

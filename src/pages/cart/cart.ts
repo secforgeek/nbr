@@ -9,10 +9,10 @@ export class CartPage {
 
   cartItem:any[] = [];
   totalAmount:number = 0;
+  finalAmount:number = 0;
+  charges:number = 0;
   delivery_amount:number = 0;
   service_charge:number = 0;
-  charges:number = 0;
-  finalAmount:number = 0;
   cartFound:boolean = false;
   delivery:boolean = true;
   collection:boolean = false;
@@ -24,6 +24,8 @@ export class CartPage {
 
   ionViewWillEnter(){
     this.cartItem = this.communication.getCart();
+    this.delivery_amount = +this.communication.getDeliveryCharge(); 
+    this.service_charge = +this.communication.getServiceCharge(); 
     this.updateTotal();
   }
 
@@ -66,8 +68,8 @@ export class CartPage {
       total += item.quantity * item.price;
     }
     this.totalAmount = total;
-    this.finalAmount = total + this.delivery_amount + this.service_charge;
     this.charges = this.delivery_amount + this.service_charge;
+    this.finalAmount = this.charges + this.totalAmount;
   }
 
   dupdate(item){

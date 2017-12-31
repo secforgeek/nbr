@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CommunicationProvider {
     cart:any[] = [];
-    delivery_charge:number;
+    delivery_charge:number = 0;
     shopid:string = null;
     storeinfo:any[] = [];
+    service_charge:number = 0;
 
     constructor(){
         console.log("Communication Load");
@@ -20,6 +21,10 @@ export class CommunicationProvider {
 
     setDeliveryCharge(price){
         this.delivery_charge = price;
+    }
+
+    setServiceCharge(price){
+        this.service_charge = price;
     }
 
     setCartStoreInfo(data){
@@ -44,6 +49,10 @@ export class CommunicationProvider {
 
     getDeliveryCharge(){
         return this.delivery_charge;
+    }
+
+    getServiceCharge(){
+        return this.service_charge;
     }
 
 }

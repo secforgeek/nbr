@@ -4,12 +4,12 @@ import { CartPage } from '../cart/cart';
 import { SettingsPage } from '../settings/settings';
 import { ShowmenuPage } from '../showmenu/showmenu';
 import { HomePage } from '../home/home';
-
+import { ListshopsPage } from '../listshops/listshops';
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  tab1Root = HomePage; // ShowmenuPage; //
+  tab1Root = ListshopsPage; // ShowmenuPage; //
   tab2Root = CartPage;//
   tab3Root = SettingsPage;
   mySelectedIndex: number;

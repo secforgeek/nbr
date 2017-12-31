@@ -2,7 +2,7 @@
 <div class="div1">
     <div class="div1_inner1">
         <h6>Order Summary</h6>
-        <h5 *ngIf="cartFound">&#8377; {{ totalAmount.toFixed(2) }}</h5>
+        <h5 *ngIf="cartFound">&#8377; {{ finalAmount.toFixed(2) }}</h5>
         <h5 *ngIf="!cartFound">&#8377; {{ 0 }}</h5>
     </div>
     <div class="div1_inner2" *ngIf="cartFound">
@@ -39,7 +39,8 @@
                 <span>&#8377; {{ charges.toFixed(2) }}</span>
                 <span><b>&#8377; {{ finalAmount.toFixed(2) }}</b></span>
             </div>
-        </div>      
+        </div>
+        <button ion-button block>Go to Checkout</button>      
     </ng-container>
     <ng-template #elseTemplate>
         <div class="noitem">

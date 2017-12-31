@@ -92,4 +92,14 @@
                 </ion-card>
         </ng-template>
     </div>
+    <div *ngIf="no_shops_nearby" class="norest">
+        <ion-card>
+            <ion-card-content>
+                <div class="norest_inner">
+                    <img src="../../assets/imgs/shop.png"/>
+                    <h1>No shops found in your area</h1>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>

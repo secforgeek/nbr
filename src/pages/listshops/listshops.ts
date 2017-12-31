@@ -14,13 +14,13 @@ export class ListshopsPage {
 
   apiresult = false;
   token = null;
-  lat = null;
-  lng = null;
+  lat:number = null;
+  lng:number = null;
   selectedFilter = null;
   successData = null;
   stores:Apidata[] = null;
   filterData:Apidata[] = null;
-
+  no_shops_nearby = false;
   constructor(
     public navCtrl:NavController,
     public navparam:NavParams,
@@ -32,9 +32,13 @@ export class ListshopsPage {
   ) {
 
     //getting value
-    this.token = this.navparam.get('token');
-    this.lat = this.navparam.get('lat');
-    this.lng = this.navparam.get('lng');
+    //this.token = this.navparam.get('token');
+    //this.lat = this.navparam.get('lat');
+    //this.lng = this.navparam.get('lng');
+
+    this.lat = 54.942794;
+    this.lng = -1.871812;
+    this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ2NzE2ODUsImV4cCI6MzAzMDU1Mjk3MCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.HePE7hlK4H2JjEzh_juCNk6q-FaxR7Bi4FtbDQXFcDr7eKxlq3qmn-0BvIJDDTv1fxu0IWdEfVGhjUZx2LjkN4j5oQVJYUHBrx3zs4Q5LTeb3ZRmOoZ_0fpnclSC6iA7liW0yWqcuV-dyjbWqHk6m4NKJHFc3SMWiPeOw1sjD2U";
   }
 
   ionViewDidLoad(){
@@ -47,6 +51,7 @@ export class ListshopsPage {
     loader.present().then(() => {
       this.postman.ListStore(this.token, this.lat, this.lng, "Takeaway").subscribe(success => {
         this.successData = success;
+        console.log(success);
         switch(Object.keys(this.successData.response)[0]){
           case "error":
             this.alert.fireAlert("Error", this.successData.response.error);
@@ -58,10 +63,13 @@ export class ListshopsPage {
             this.apiresult = true;
           break;
 
-          case "logout":
+          case "action":
             this.alert.fireAlert("Session Expired", "Login Again");
             console.log(success);
-            //this.storage.resetAll();
+          break;
+
+          case "shop":
+            this.no_shops_nearby = true;
           break;
 
           default:
@@ -84,9 +92,11 @@ export class ListshopsPage {
   filterSearch(ev:any){
     let search = ev.target.value;
     if(search && search.trim() !== ''){
-      this.filterData = this.stores.filter(function(item){
+      if(this.stores !== null){
+        this.filterData = this.stores.filter(function(item){
           return item.name.toLowerCase().includes(search.toLowerCase());
-      });
+        });
+      }
     }else{
       this.filterData = null;
     }
@@ -103,54 +113,56 @@ export class ListshopsPage {
   }
 
   filterBtn(){
-    let al = this.alertCtrl.create();
-    al.setTitle('Shop Filters');
-    if(this.selectedFilter == null || this.selectedFilter == "All"){
+    if(this.stores !== null){
+      let al = this.alertCtrl.create();
+      al.setTitle('Shop Filters');
+      if(this.selectedFilter == null || this.selectedFilter == "All"){
+          al.addInput({
+            type: 'radio',
+            label:'All',
+            value: 'All',
+            checked:true
+          });
+      }else{
         al.addInput({
           type: 'radio',
           label:'All',
-          value: 'All',
-          checked:true
+          value: 'All'
         });
-    }else{
-      al.addInput({
-        type: 'radio',
-        label:'All',
-        value: 'All'
+      }
+      let menus = new Array();
+      for(let entry of this.stores){
+        let split = entry.cuisine.split(", ");
+        for(let sp of split){
+            if(sp == this.selectedFilter){
+              al.addInput({
+                type: 'radio',
+                label: sp,
+                value: sp,
+                checked: true
+              });
+            }else{
+              al.addInput({
+                type: 'radio',
+                label: sp,
+                value: sp
+              });
+            }
+        }
+      }
+      al.addButton({
+        text:'Ok',
+        handler: (data: any) => {
+          this.selectedFilter = data;
+          this.filterByFilterOption(data);
+          console.log("Selected : "+data);
+        }
       });
-    }
-    let menus = new Array();
-    for(let entry of this.stores){
-      let split = entry.cuisine.split(", ");
-      for(let sp of split){
-          if(sp == this.selectedFilter){
-            al.addInput({
-              type: 'radio',
-              label: sp,
-              value: sp,
-              checked: true
-            });
-          }else{
-            al.addInput({
-              type: 'radio',
-              label: sp,
-              value: sp
-            });
-          }
-      }
-    }
-    al.addButton({
-      text:'Ok',
-      handler: (data: any) => {
-        this.selectedFilter = data;
-        this.filterByFilterOption(data);
-        console.log("Selected : "+data);
-      }
-    });
 
-    al.addButton('Cancel');
-    al.present();
-    console.log(menus);
+      al.addButton('Cancel');
+      al.present();
+      console.log(menus);
+    }
   }
 
   ngOnInit(){
@@ -177,7 +189,7 @@ export class ListshopsPage {
     console.log("%c onViewWillUnLoad", 'background: #222; color: #bada55');
   }
 
-  showMenu(name, cuisine, distance, minimum_order, delivery_fee, shopid){
+  showMenu(name:string, cuisine:string, distance:number, minimum_order:number, delivery_fee:number, shopid:string){
     let data = {
       "name":name,
       "cuisine":cuisine,

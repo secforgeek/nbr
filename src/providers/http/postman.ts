@@ -10,6 +10,7 @@ export class PostmanProvider {
   auth_url = this.host+'/api/auth';
   find_restro_url = this.host+'/api/findshops';
   getmenu_url = this.host+'/api/getmenu';
+  verify_cart_url = this.host+'/api/verifycart';
 
   data = null;
   loader = null;
@@ -34,5 +35,29 @@ export class PostmanProvider {
     let custom = {"token":token, "restid":restid};
     return this.http.post(this.getmenu_url, custom, {headers:htph}); 
   }
+
+  verifyCheckout(token, shopid, basket:any[], price:any[]){
+    let ToSend:any[] = [];
+    let FINALSEND:any[] = [];
+    for(let item of basket){
+      let temp = {
+        "quantity":item.quantity,
+        "item_id":item.item_topic_id,
+        "price":item.price
+      };
+      ToSend.push(temp);
+    }
+    FINALSEND.push({"shopid":shopid}, ToSend, price);
+    let json = JSON.stringify(FINALSEND);
+   
+    //HTTP SEND
+    let htph = new HttpHeaders().set('content-type','application/json');
+    let custom = {"token":token, "data":json};
+    return this.http.post(this.verify_cart_url, custom, {headers:htph}); 
+  }
+
+}
+
+interface CheckOut{
 
 }

@@ -7,6 +7,7 @@ export class CommunicationProvider {
     shopid:string = null;
     storeinfo:any[] = [];
     service_charge:number = 0;
+    token:string = null;
 
     constructor(){
         console.log("Communication Load");
@@ -31,6 +32,10 @@ export class CommunicationProvider {
         this.storeinfo = data;
     }
 
+    setToken(token){
+        this.token = token;
+    }
+
 
     //GETTER
 
@@ -53,6 +58,10 @@ export class CommunicationProvider {
 
     getServiceCharge(){
         return this.service_charge;
+    }
+
+    getToken(){
+        return this.token;
     }
 
 }

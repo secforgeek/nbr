@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import { CommunicationProvider } from '../../providers/communication/communication';
+import { PostmanProvider } from '../../providers/http/postman';
 @Component({
   selector: 'page-cart',
   templateUrl: 'cart.html'
@@ -17,8 +18,15 @@ export class CartPage {
   delivery:boolean = true;
   collection:boolean = false;
   todeliver:boolean = true;
+  storeinfo:any = [];
 
-  constructor(public navCtrl: NavController, public events:Events, private communication: CommunicationProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public events:Events, 
+    private communication: CommunicationProvider,
+    private postman:PostmanProvider
+
+  ) {
     console.log("Loaded Cart");
   }
 
@@ -26,7 +34,14 @@ export class CartPage {
     this.cartItem = this.communication.getCart();
     this.delivery_amount = +this.communication.getDeliveryCharge(); 
     this.service_charge = +this.communication.getServiceCharge(); 
+    this.storeinfo = this.communication.getCartStoreInfo();
     this.updateTotal();
+    //DELETE THIS 
+    console.log("Delivery Amount ", this.delivery_amount);
+    console.log("Service Amount ", this.service_charge);
+    console.log("Total Amount  ", this.delivery_amount);
+    console.log(typeof this.delivery_amount);
+    console.log(typeof this.service_charge);
   }
 
   add(item_topic_id){
@@ -86,6 +101,22 @@ export class CartPage {
       this.todeliver = false;
       console.log("Delivery : "+this.todeliver.toString());
     }
+  }
+
+  checkout(){
+    let priceDetail:any = {
+      "subtotal":this.totalAmount,
+      "charges":this.charges,
+      "total":this.finalAmount
+    };
+    this.postman.verifyCheckout(this.communication.getToken(), this.storeinfo.shopid, this.cartItem, priceDetail).subscribe(success => {
+      console.log(success);
+    }, error => {
+      console.log(error);
+      console.log("Error Triggered");
+    }, () => {
+      console.log("Complete");
+    });
   }
 
 

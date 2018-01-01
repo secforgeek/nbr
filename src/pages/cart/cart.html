@@ -40,7 +40,7 @@
                 <span><b>&#8377; {{ finalAmount.toFixed(2) }}</b></span>
             </div>
         </div>
-        <button ion-button block>Go to Checkout</button>      
+        <button ion-button block (click)="checkout()">Go to Checkout</button>      
     </ng-container>
     <ng-template #elseTemplate>
         <div class="noitem">

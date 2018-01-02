@@ -16,7 +16,8 @@ export class PostmanProvider {
   loader = null;
   constructor(
     public http: HttpClient, 
-    public alert: AlertsProvider) { }
+    public alert: AlertsProvider
+  ) { }
 
   AuthLogin(username, password){
     let htph = new HttpHeaders().set('content-type','application/json');
@@ -38,7 +39,6 @@ export class PostmanProvider {
 
   verifyCheckout(token, shopid, basket:any[], price:any[]){
     let ToSend:any[] = [];
-    let FINALSEND:any[] = [];
     for(let item of basket){
       let temp = {
         "quantity":item.quantity,
@@ -47,8 +47,12 @@ export class PostmanProvider {
       };
       ToSend.push(temp);
     }
-    FINALSEND.push({"shopid":shopid}, ToSend, price);
-    let json = JSON.stringify(FINALSEND);
+    let val = {
+      "shopid":shopid,
+      "item":ToSend,
+      "price":price
+    };
+    let json = JSON.stringify(val);
    
     //HTTP SEND
     let htph = new HttpHeaders().set('content-type','application/json');

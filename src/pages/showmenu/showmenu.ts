@@ -39,8 +39,10 @@ export class ShowmenuPage {
     console.log(this.delivery_fee);
     this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ2NzE2ODUsImV4cCI6MzAzMDU1Mjk3MCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.HePE7hlK4H2JjEzh_juCNk6q-FaxR7Bi4FtbDQXFcDr7eKxlq3qmn-0BvIJDDTv1fxu0IWdEfVGhjUZx2LjkN4j5oQVJYUHBrx3zs4Q5LTeb3ZRmOoZ_0fpnclSC6iA7liW0yWqcuV-dyjbWqHk6m4NKJHFc3SMWiPeOw1sjD2U";
     this.shopid = "5d41402abc4b2a76b9719d688917c592";
-    this.delivery_fee = 1.5;
+    this.delivery_fee = 2;
     this.communication.setCartStoreInfo(this.storeInfo());
+    this.communication.setToken(this.token);
+    this.communication.setServiceCharge(10);
     if(this.communication.getShopId() === this.shopid){
       this.cart = this.communication.getCart();
     }

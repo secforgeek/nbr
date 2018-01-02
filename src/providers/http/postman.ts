@@ -37,12 +37,20 @@ export class PostmanProvider {
     return this.http.post(this.getmenu_url, custom, {headers:htph}); 
   }
 
-  verifyCheckout(token, shopid, basket:any[], price:any[]){
+  verifyCheckout(token, shopid, basket:any[], price:any[], deliver:boolean){
+    console.log("Verify Checkout");
     let ToSend:any[] = [];
+    let del = null;
+    if(deliver){
+      del = "D";
+    }else{
+      del = "C";
+    }
     for(let item of basket){
       let temp = {
         "quantity":item.quantity,
         "item_id":item.item_topic_id,
+        "name":item.item,
         "price":item.price
       };
       ToSend.push(temp);
@@ -50,18 +58,15 @@ export class PostmanProvider {
     let val = {
       "shopid":shopid,
       "item":ToSend,
-      "price":price
+      "price":price,
+      "del_method":del
     };
     let json = JSON.stringify(val);
-   
+    console.log(json);
     //HTTP SEND
     let htph = new HttpHeaders().set('content-type','application/json');
     let custom = {"token":token, "data":json};
     return this.http.post(this.verify_cart_url, custom, {headers:htph}); 
   }
-
-}
-
-interface CheckOut{
 
 }

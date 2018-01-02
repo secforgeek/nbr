@@ -39,7 +39,7 @@ export class CartPage {
     //DELETE THIS 
     console.log("Delivery Amount ", this.delivery_amount);
     console.log("Service Amount ", this.service_charge);
-    console.log("Total Amount  ", this.delivery_amount);
+    console.log("Total Amount  ", this.delivery_amount + this.service_charge);
     console.log(typeof this.delivery_amount);
     console.log(typeof this.service_charge);
   }
@@ -103,13 +103,13 @@ export class CartPage {
     }
   }
 
-  checkout(){
+  checkout(subtotal, charges, finalamount){
     let priceDetail:any = {
-      "subtotal":this.totalAmount,
-      "charges":this.charges,
-      "total":this.finalAmount
+      "subtotal":subtotal,
+      "charges":charges,
+      "total":finalamount
     };
-    this.postman.verifyCheckout(this.communication.getToken(), this.storeinfo.shopid, this.cartItem, priceDetail).subscribe(success => {
+    this.postman.verifyCheckout(this.communication.getToken(), this.storeinfo.shopid, this.cartItem, priceDetail, this.todeliver).subscribe(success => {
       console.log(success);
     }, error => {
       console.log(error);

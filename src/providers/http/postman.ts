@@ -19,9 +19,9 @@ export class PostmanProvider {
     public alert: AlertsProvider
   ) { }
 
-  AuthLogin(username, password){
+  AuthLogin(username, password, fcm){
     let htph = new HttpHeaders().set('content-type','application/json');
-    let custom = {"username":username, "password":password.toString()};
+    let custom = {"username":username, "password":password.toString(), "fcm":fcm};
     return this.http.post(this.auth_url, custom, {headers:htph});
   }
 

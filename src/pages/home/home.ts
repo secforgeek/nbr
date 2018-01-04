@@ -68,11 +68,11 @@ export class HomePage {
               });
             }else{
               this.toggle = false;
-              console.log("Toggle False 1");
+              this.alert.fireToast("Location not found. Please enter your address manually")
             }
         }).catch(() => {
           this.toggle = false;
-          console.log("Toggle False 2");
+          this.alert.fireToast("Location not found. Please enter your address manually")
         });
       });
     }else{
@@ -89,7 +89,8 @@ export class HomePage {
               this.navCtrl.push(ListshopsPage, data);
             });
           }else{
-            this.alert.fireToast("Unable to locate your location")
+            this.alert.fireToast("Unable to locate your location");
+            this.toggle = true;
           }
       });
     }

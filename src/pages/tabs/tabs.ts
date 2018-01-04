@@ -9,7 +9,7 @@ import { ListshopsPage } from '../listshops/listshops';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  tab1Root = ShowmenuPage; //ListshopsPage; // 
+  tab1Root = HomePage;//ShowmenuPage; //ListshopsPage; // 
   tab2Root = CartPage;//
   tab3Root = SettingsPage;
   mySelectedIndex: number;

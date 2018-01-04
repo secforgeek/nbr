@@ -32,13 +32,13 @@ export class ListshopsPage {
   ) {
 
     //getting value
-    //this.token = this.navparam.get('token');
-    //this.lat = this.navparam.get('lat');
-    //this.lng = this.navparam.get('lng');
+    this.token = this.navparam.get('token');
+    this.lat = this.navparam.get('lat');
+    this.lng = this.navparam.get('lng');
 
     //this.lat = 54.942794;
     //this.lng = -1.871812;
-    this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ2NzE2ODUsImV4cCI6MzAzMDU1Mjk3MCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.HePE7hlK4H2JjEzh_juCNk6q-FaxR7Bi4FtbDQXFcDr7eKxlq3qmn-0BvIJDDTv1fxu0IWdEfVGhjUZx2LjkN4j5oQVJYUHBrx3zs4Q5LTeb3ZRmOoZ_0fpnclSC6iA7liW0yWqcuV-dyjbWqHk6m4NKJHFc3SMWiPeOw1sjD2U";
+    //this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ2NzE2ODUsImV4cCI6MzAzMDU1Mjk3MCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.HePE7hlK4H2JjEzh_juCNk6q-FaxR7Bi4FtbDQXFcDr7eKxlq3qmn-0BvIJDDTv1fxu0IWdEfVGhjUZx2LjkN4j5oQVJYUHBrx3zs4Q5LTeb3ZRmOoZ_0fpnclSC6iA7liW0yWqcuV-dyjbWqHk6m4NKJHFc3SMWiPeOw1sjD2U";
   }
 
   ionViewDidLoad(){

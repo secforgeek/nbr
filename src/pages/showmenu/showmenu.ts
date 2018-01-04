@@ -37,8 +37,8 @@ export class ShowmenuPage {
     this.delivery_fee = navParams.get('delivery_fee');
     console.log(typeof this.delivery_fee);
     console.log(this.delivery_fee);
-    this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ5Mjk5MDUsImV4cCI6MzAzMTA2OTQxMCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.VfgAm4rwbLmQ-OajEQ3JAgwinTWemHSkQGqaDtniHTdcvn_1E0uoBjf_Ux-N8DxC9j-3q2sQUql1MHLa41mXawfpty21O1cL9mIDj817a5a7algjY3Pj8iNEFH1je6te3S8GPVrULxvb_4ZwRrOOYo4tEU-vy49Rhz_6OtyBjGI";
-    this.shopid = "5d41402abc4b2a76b9719d688917c592";
+    //this.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTQ5Mjk5MDUsImV4cCI6MzAzMTA2OTQxMCwiaXNzIjoiZ3Nkcm9pZC5jb20iLCJkYXRhIjp7InVzciI6IlRlc3QiLCJ0eXBlIjoiVSIsImVtYWlsIjoidXNlcm5hbWVAZ21haWwuY29tIn19.VfgAm4rwbLmQ-OajEQ3JAgwinTWemHSkQGqaDtniHTdcvn_1E0uoBjf_Ux-N8DxC9j-3q2sQUql1MHLa41mXawfpty21O1cL9mIDj817a5a7algjY3Pj8iNEFH1je6te3S8GPVrULxvb_4ZwRrOOYo4tEU-vy49Rhz_6OtyBjGI";
+    //this.shopid = "5d41402abc4b2a76b9719d688917c592";
     this.delivery_fee = 2;
     this.communication.setCartStoreInfo(this.storeInfo());
     this.communication.setToken(this.token);

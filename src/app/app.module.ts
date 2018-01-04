@@ -23,6 +23,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { LocationProvider } from '../providers/location/location';
 import { ShowmenuPage } from '../pages/showmenu/showmenu';
 import { CommunicationProvider } from '../providers/communication/communication';
+import { FCM } from '@ionic-native/fcm';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CommunicationProvider } from '../providers/communication/communication'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AlertsProvider,
     LocationProvider,
-    CommunicationProvider
+    CommunicationProvider,
+    FCM
   ]
 })
 export class AppModule {}

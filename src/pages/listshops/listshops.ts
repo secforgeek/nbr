@@ -51,7 +51,7 @@ export class ListshopsPage {
     loader.present().then(() => {
       this.postman.ListStore(this.token, this.lat, this.lng, "Takeaway").subscribe(success => {
         this.successData = success;
-        console.log(success);
+        console.log(JSON.stringify(success));
         switch(Object.keys(this.successData.response)[0]){
           case "error":
             this.alert.fireAlert("Error", this.successData.response.error);
@@ -189,7 +189,7 @@ export class ListshopsPage {
     console.log("%c onViewWillUnLoad", 'background: #222; color: #bada55');
   }
 
-  showMenu(name:string, cuisine:string, distance:number, minimum_order:number, delivery_fee:number, shopid:string){
+  showMenu(name:string, cuisine:string, distance:number, minimum_order:number, delivery_fee:number, shopid:string, watznear_charge:number){
     let data = {
       "name":name,
       "cuisine":cuisine,
@@ -197,7 +197,8 @@ export class ListshopsPage {
       "min_order":minimum_order,
       "delivery_fee":delivery_fee,
       "shopid":shopid,
-      "token":this.token
+      "token":this.token,
+      "watznear_charge":watznear_charge
     };
     this.navCtrl.push(ShowmenuPage, data);
   }

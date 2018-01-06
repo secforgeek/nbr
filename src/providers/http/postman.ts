@@ -59,7 +59,8 @@ export class PostmanProvider {
       "shopid":shopid,
       "item":ToSend,
       "price":price,
-      "del_method":del
+      "del_method":del,
+      "payment":"COD"
     };
     let json = JSON.stringify(val);
     console.log(json);

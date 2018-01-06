@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import { CommunicationProvider } from '../../providers/communication/communication';
 import { PostmanProvider } from '../../providers/http/postman';
+import { AlertsProvider } from '../../providers/alerts/alerts';
 @Component({
   selector: 'page-cart',
   templateUrl: 'cart.html'
@@ -19,13 +20,13 @@ export class CartPage {
   collection:boolean = false;
   todeliver:boolean = true;
   storeinfo:any = [];
-
+  successData = null;
   constructor(
     public navCtrl: NavController, 
     public events:Events, 
     private communication: CommunicationProvider,
-    private postman:PostmanProvider
-
+    private postman:PostmanProvider,
+    private alert:AlertsProvider
   ) {
     console.log("Loaded Cart");
   }
@@ -107,12 +108,38 @@ export class CartPage {
     let priceDetail:any = {
       "subtotal":subtotal,
       "charges":charges,
-      "total":finalamount
+      "total":finalamount,
+      "splitcharge":{
+        "delivery":this.delivery_amount,
+        "service":this.service_charge
+      }
     };
     this.postman.verifyCheckout(this.communication.getToken(), this.storeinfo.shopid, this.cartItem, priceDetail, this.todeliver).subscribe(success => {
-      console.log(success);
+        this.successData = success;
+        console.log(success);
+        switch(Object.keys(this.successData.response)[0]){
+          case "error":
+            this.alert.fireAlert("Error ("+this.successData.response.code+")", this.successData.response.error);
+          break;
+
+          case "profile_status":
+              this.alert.fireAlert("Verification Failed", this.successData.response.profile_status);
+          break;
+
+          case "part_done":
+            this.alert.fireAlert("Verification Failed", this.successData.response.part_done);
+          break;
+
+          case "done": //done
+            this.alert.fireAlert("Order", this.successData.response.done);
+          break;
+
+          default:
+            this.alert.fireAlert("Error", "Something went wrong!");
+          break;
+        }
     }, error => {
-      console.log(error);
+      console.log(JSON.stringify(error));
       console.log("Error Triggered");
     }, () => {
       console.log("Complete");

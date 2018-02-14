@@ -30,7 +30,8 @@ export class LoginPage{
   login(value){
     this.loginFormdata = value;
     let pass = sha256(this.loginFormdata.password);
-    this.fcm.getToken().then(token => {
+    //this.fcm.getToken().then(token => {
+      let token = "dsdsdsdsdsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
       this.authprovider.AuthLogin(this.loginFormdata.username, pass, token).subscribe(data => {
         this.successData = data;
         console.log(JSON.stringify(data));
@@ -58,6 +59,6 @@ export class LoginPage{
       }, () => {
         console.log(this.successData);
       });
-    });
+    //});
   }
 }

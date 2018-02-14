@@ -76,7 +76,7 @@ export class ShowmenuPage {
           break;
 
           default:
-            this.alert.fireAlert("Something Went Wrong!", this.information.response.error);
+            this.alert.fireAlertandPop("Something Went Wrong!", this.information.response.error, this.navCtrl);
             console.log("Default");
             console.log(Object.keys(this.information.response)[0]);
           break;

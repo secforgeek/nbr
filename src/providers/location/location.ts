@@ -26,6 +26,7 @@ export class LocationProvider {
   locationReverse(lat, lng){
     this.nativeGeocoder.reverseGeocode(lat, lng).then((result: NativeGeocoderReverseResult) => {
         //TODO Reverse Success
+
     })
     .catch((error: any) => {
         //TODO Reverse Error

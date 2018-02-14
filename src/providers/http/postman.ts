@@ -6,7 +6,7 @@ import { AlertsProvider } from '../alerts/alerts';
 
 @Injectable()
 export class PostmanProvider {
-  host = 'http://192.168.0.6';
+  host = 'http://192.168.1.21';
   auth_url = this.host+'/api/auth';
   find_restro_url = this.host+'/api/findshops';
   getmenu_url = this.host+'/api/getmenu';

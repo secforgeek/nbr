@@ -93,4 +93,5 @@
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Use geocoder service" />
     </plugin>
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
+    <allow-navigation href="http://192.168.1.21:8100" />
 </widget>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events } from 'ionic-angular';
+import { NavController, Events, LoadingController } from 'ionic-angular';
 import { CommunicationProvider } from '../../providers/communication/communication';
 import { PostmanProvider } from '../../providers/http/postman';
 import { AlertsProvider } from '../../providers/alerts/alerts';
@@ -26,7 +26,8 @@ export class CartPage {
     public events:Events, 
     private communication: CommunicationProvider,
     private postman:PostmanProvider,
-    private alert:AlertsProvider
+    private alert:AlertsProvider,
+    private loading:LoadingController
   ) {
     console.log("Loaded Cart");
   }
@@ -114,35 +115,47 @@ export class CartPage {
         "service":this.service_charge
       }
     };
-    this.postman.verifyCheckout(this.communication.getToken(), this.storeinfo.shopid, this.cartItem, priceDetail, this.todeliver).subscribe(success => {
-        this.successData = success;
-        console.log(success);
-        switch(Object.keys(this.successData.response)[0]){
-          case "error":
-            this.alert.fireAlert("Error ("+this.successData.response.code+")", this.successData.response.error);
-          break;
+    let loader = this.loading.create({
+      content: 'Verifying Items'
+    });
 
-          case "profile_status":
-              this.alert.fireAlert("Verification Failed", this.successData.response.profile_status);
-          break;
+    loader.present().then(() => {
+          this.postman.verifyCheckout(this.communication.getToken(), this.storeinfo.shopid, this.cartItem, priceDetail, this.todeliver).subscribe(success => {
+            this.successData = success;
+            console.log(success);
+            switch(Object.keys(this.successData.response)[0]){
+              case "error":
+                loader.dismiss();
+                this.alert.fireAlert("Error ("+this.successData.response.code+")", this.successData.response.error);
+              break;
 
-          case "part_done":
-            this.alert.fireAlert("Verification Failed", this.successData.response.part_done);
-          break;
+              case "profile_status":
+                loader.dismiss();
+                this.alert.fireAlert("Verification Failed", this.successData.response.profile_status);
+              break;
 
-          case "done": //done
-            this.alert.fireAlert("Order", this.successData.response.done);
-          break;
+              case "part_done":
+                loader.dismiss();
+                this.alert.fireAlert("Verification Failed", this.successData.response.part_done);
+              break;
 
-          default:
-            this.alert.fireAlert("Error", "Something went wrong!");
-          break;
-        }
-    }, error => {
-      console.log(JSON.stringify(error));
-      console.log("Error Triggered");
-    }, () => {
-      console.log("Complete");
+              case "done": //done
+                loader.dismiss();
+                this.alert.fireAlert("Order", this.successData.response.done);
+              break;
+
+              default:
+                loader.dismiss();
+                this.alert.fireAlert("Error", "Something went wrong!");
+              break;
+            }
+        }, error => {
+          console.log(JSON.stringify(error));
+          loader.dismiss();
+          console.log("Error Triggered");
+        }, () => {
+          console.log("Complete");
+        });
     });
   }
 

@@ -48,7 +48,7 @@ export class HomePage {
     if(this.toggle){
       let options = {
         enableHighAccuracy: true,
-        timeout: 5000
+        timeout: 10000
       };
       
       this.platform.ready().then(() => {
@@ -65,6 +65,7 @@ export class HomePage {
                 };
   
                 this.navCtrl.push(ListshopsPage, data);
+                console.log
               });
             }else{
               this.toggle = false;
@@ -75,6 +76,7 @@ export class HomePage {
           this.alert.fireToast("Location not found. Please enter your address manually")
         });
       });
+
     }else{
       console.log(this.address);
       this.location.locationForward(this.address).then(success => {

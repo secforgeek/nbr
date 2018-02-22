@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController, App } from 'ionic-angular';
 import { PostmanProvider } from '../../providers/http/postman';
 import { AlertsProvider } from '../../providers/alerts/alerts';
 import { ShowmenuPage } from '../../pages/showmenu/showmenu';
 import { StorageProvider } from '../../providers/storage/storage';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-listshops',
@@ -28,7 +29,8 @@ export class ListshopsPage {
     public loading:LoadingController,
     public alert:AlertsProvider,
     public alertCtrl: AlertController,
-    public storage: StorageProvider
+    public storage: StorageProvider,
+    public nav:App
   ) {
 
     //getting value
@@ -65,6 +67,8 @@ export class ListshopsPage {
 
           case "action":
             this.alert.fireAlert("Session Expired", "Login Again");
+            this.storage.resetAll();
+            this.nav.getRootNav().push(LoginPage);
             console.log(success);
           break;
 

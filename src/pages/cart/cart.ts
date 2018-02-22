@@ -38,12 +38,14 @@ export class CartPage {
     this.service_charge = +this.communication.getServiceCharge(); 
     this.storeinfo = this.communication.getCartStoreInfo();
     this.updateTotal();
-    //DELETE THIS 
+    /*
     console.log("Delivery Amount ", this.delivery_amount);
     console.log("Service Amount ", this.service_charge);
     console.log("Total Amount  ", this.delivery_amount + this.service_charge);
     console.log(typeof this.delivery_amount);
     console.log(typeof this.service_charge);
+
+    */
   }
 
   add(item_topic_id){
@@ -103,6 +105,10 @@ export class CartPage {
       this.todeliver = false;
       console.log("Delivery : "+this.todeliver.toString());
     }
+  }
+
+  selfValidate(subtotal, charges, finalamount){
+    this.checkout(subtotal, charges, finalamount);
   }
 
   checkout(subtotal, charges, finalamount){

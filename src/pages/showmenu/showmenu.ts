@@ -5,6 +5,7 @@ import { AlertsProvider } from '../../providers/alerts/alerts';
 import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular';
 import { CommunicationProvider } from '../../providers/communication/communication';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-showmenu',
@@ -25,7 +26,8 @@ export class ShowmenuPage {
     public alert:AlertsProvider,
     public communication:CommunicationProvider,
     public events:Events,
-    public nav:App
+    public nav:App,
+    private storage:StorageProvider
   ) {
     console.log("Loaded ShowMenu");
     this.shopid = navParams.get('shopid');
@@ -70,8 +72,8 @@ export class ShowmenuPage {
 
           case "action":
             this.alert.fireAlert("Session Expired", "Login Again");
-           // this.storage.resetAll();
-            //this.nav.getRootNav().push(LoginPage);
+            this.storage.resetAll();
+            this.nav.getRootNav().push(LoginPage);
             console.log(success);
           break;
 

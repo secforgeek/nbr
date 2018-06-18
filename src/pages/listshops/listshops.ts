@@ -56,16 +56,19 @@ export class ListshopsPage {
         console.log(JSON.stringify(success));
         switch(Object.keys(this.successData.response)[0]){
           case "error":
+            loader.dismiss();
             this.alert.fireAlert("Error", this.successData.response.error);
           break;
 
           case "success":
+            loader.dismiss();
             this.stores = this.successData.response.data;
             console.log(this.stores);
             this.apiresult = true;
           break;
 
           case "action":
+            loader.dismiss();
             this.alert.fireAlert("Session Expired", "Login Again");
             this.storage.resetAll();
             this.nav.getRootNav().push(LoginPage);
@@ -73,6 +76,7 @@ export class ListshopsPage {
           break;
 
           case "shop":
+            loader.dismiss();
             this.no_shops_nearby = true;
           break;
 
